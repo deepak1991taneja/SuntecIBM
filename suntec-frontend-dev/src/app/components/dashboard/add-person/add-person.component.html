@@ -1,0 +1,141 @@
+<div class="add-person-container">
+<mat-toolbar >
+    <span class="fill-remaining-space">Person registration form</span>
+  </mat-toolbar>
+<!--<div class="container" *ngIf="!post; else forminfo" novalidate> -->
+  <div class="container"  novalidate> 
+    <form [formGroup]="formGroup" (ngSubmit)="onSubmit(formGroup.value)" class="form">
+        <div fxLayout="row">
+      <mat-form-field class="form-element">
+        <input matInput placeholder="Email address" formControlName="email" required>
+        <mat-icon matSuffix>email</mat-icon>
+        <mat-error *ngIf="!formGroup.controls['email'].valid && formGroup.controls['email'].touched">
+          {{ getErrorEmail() }}
+        </mat-error>
+      </mat-form-field>
+  
+      <mat-form-field class="form-element" >
+        <input matInput placeholder="Name" formControlName="name" required>
+        <mat-icon matSuffix>person</mat-icon>
+        <mat-error *ngIf="!formGroup.controls['name'].valid && formGroup.controls['name'].touched">
+          {{ titleAlertName }}
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="form-element" >
+        <input matInput [type]="hide ? 'password' : 'text'" placeholder="Enter password" formControlName="password" required>
+        <mat-hint>Choose a password of at least eight characters, one uppercase letter and one number</mat-hint>
+        <mat-error *ngIf="!formGroup.controls['password'].valid && formGroup.controls['password'].touched">
+          {{ getErrorPassword() }}
+        </mat-error>
+      </mat-form-field>
+     
+    </div>
+    <div fxLayout="row">
+        <mat-form-field class="form-element">
+          <input matInput placeholder="Job position" formControlName="jobPosition" required>
+          <mat-error *ngIf="!formGroup.controls['jobPosition'].valid && formGroup.controls['jobPosition'].touched">
+            {{ titleAlert }}
+          </mat-error>
+        </mat-form-field>
+    
+        <mat-form-field class="form-element">
+          <input matInput placeholder="Phone" formControlName="phone" required>
+          <mat-icon matSuffix>phone</mat-icon>
+          <mat-error *ngIf="!formGroup.controls['phone'].valid && formGroup.controls['phone'].touched">
+            {{ titleAlert }}
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="form-element">
+          <input matInput placeholder="Company Name" formControlName="company" required>
+          <mat-error *ngIf="!formGroup.controls['company'].valid && formGroup.controls['company'].touched">
+            {{ titleAlert }}
+          </mat-error>
+        </mat-form-field>
+       
+      </div>
+
+      <div fxLayout="row">
+        <mat-form-field class="form-element">
+          <input matInput placeholder="Unit" formControlName="unit">
+          <mat-error *ngIf="!formGroup.controls['unit'].valid && formGroup.controls['unit'].touched">
+            {{ titleAlert }}
+          </mat-error>
+        </mat-form-field>
+    
+        <mat-form-field class="form-element">
+          <input matInput placeholder="Location" formControlName="jobLocation" required>
+          <mat-icon matSuffix>add_location</mat-icon>
+          <mat-error *ngIf="!formGroup.controls['jobLocation'].valid && formGroup.controls['jobLocation'].touched">
+            {{ titleAlert }}
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="form-element">
+          <input matInput placeholder="Door" formControlName="door">
+          <mat-error *ngIf="!formGroup.controls['door'].valid && formGroup.controls['door'].touched">
+            {{ titleAlert }}
+          </mat-error>
+        </mat-form-field>
+       
+      </div>
+
+      <div fxLayout="row">
+    <mat-form-field class="form-element">
+        <textarea matInput placeholder="Remarks"  formControlName="remarks"></textarea>
+        <mat-error *ngIf="!formGroup.controls['remarks'].valid && formGroup.controls['remarks'].touched">
+          Required field, must be between 5 and 10 characters.
+        </mat-error>
+      </mat-form-field>
+     
+      <mat-form-field class="form-element">
+        <input matInput placeholder="NRIC" formControlName="nric" required>
+        <mat-error *ngIf="!formGroup.controls['nric'].valid && formGroup.controls['nric'].touched">
+          {{ titleAlert }}
+        </mat-error>
+      </mat-form-field>
+      </div>
+      <div fxLayout="row">
+        <mat-form-field color="primary" appearance="fill" class="form-element">
+            <mat-label>Activation Date</mat-label>
+            <input matInput [matDatepicker]="picker1" formControlName="activationDate" required>
+            <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+            <mat-datepicker #picker1></mat-datepicker>
+          </mat-form-field>
+          
+          <mat-form-field color="primary" appearance="fill" class="form-element">
+            <mat-label>Expiration Date</mat-label>
+            <input matInput [matDatepicker]="picker2" formControlName="expirationDate" required>
+            <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+            <mat-datepicker #picker2 color="primary"></mat-datepicker>
+          </mat-form-field>
+      </div>
+      <div fxLayout="row">
+      <mat-form-field>
+        <ngx-mat-file-input   (change)="uploadFile($event)" placeholder="upload photo">
+        </ngx-mat-file-input>
+        <mat-icon matSuffix>attachment</mat-icon>
+       
+      </mat-form-field>
+      
+      </div>
+      <div fxLayout="row">
+      
+      <div class="form-element">
+        <mat-checkbox formControlName="validateTC" value="1" color="primary">I concent to building's terms and conditions</mat-checkbox>
+      </div>
+      <div class="form-element">
+        <mat-checkbox formControlName="validateQRCode" value="1" color="primary">I want to use Suntec QR Code mobile application.</mat-checkbox>
+      </div>
+      
+      </div>
+      <div class="form-element">
+        <button mat-raised-button color="primary" type="submit" class="button" [disabled]="!formGroup.valid">Submit Form</button>
+    </div>
+    </form>
+  </div>
+</div>
+  
+<!-- <ng-template #forminfo>
+    <div class="container">
+      {{ post | json }}
+    </div>
+  </ng-template> -->

@@ -1,0 +1,42 @@
+<mat-toolbar color="primary"  >
+    <mat-toolbar-row mode="push">
+      <button mat-icon-button>
+        <mat-icon (click)="sidenav.toggle()">menu</mat-icon>
+      </button>
+      <h1>APM</h1>
+      <span class="menu-spacer"></span>
+      <div>
+        <a mat-button [routerLink]="'/dashboard'" routerLinkActive="active"><mat-icon>supervised_user_circle</mat-icon>   Authorized Staff List </a>
+        <a mat-button [routerLink]="'/staff-blacklist'"><mat-icon>block</mat-icon>   Staff Blacklist </a>
+        <a mat-button [routerLink]="'/visitor-list'"><mat-icon>visibility</mat-icon>   Visitor List </a>
+        <a mat-button [routerLink]="'/visitor-blacklist'"><mat-icon>visibility_off</mat-icon>   Visitor Blacklist </a>
+        <a mat-button [routerLink]="'/reports'"><mat-icon>report</mat-icon>   Reports </a>
+        <a mat-button [routerLink]="''"><mat-icon>exit_to_app</mat-icon>   Logout </a>
+      </div>
+    </mat-toolbar-row>
+  
+    <mat-toolbar-row>
+        <span style="font-size: 12px;">APM-helps you easily person management</span>
+      </mat-toolbar-row>
+  </mat-toolbar>
+  <mat-sidenav-container  >
+    <mat-sidenav #sidenav mode="push">
+      <mat-nav-list>
+  
+        <a mat-list-item [routerLink]="'/dashboard'" routerLinkActive="active" ><mat-icon>supervised_user_circle</mat-icon>   Authorized Staff List </a>
+        <a mat-list-item [routerLink]="'/staff-blacklist'"><mat-icon>block</mat-icon>   Staff Blacklist </a>
+        <a mat-list-item [routerLink]="'/visitor-list'"><mat-icon>visibility</mat-icon>   Visitor List </a>
+        <a mat-list-item [routerLink]="'/visitor-blacklist'"><mat-icon>visibility_off</mat-icon>   Visitor Blacklist </a>
+        <a mat-list-item [routerLink]="'/reports'"><mat-icon>report</mat-icon>   Reports </a>
+        <a mat-list-item [routerLink]="''"><mat-icon>exit_to_app</mat-icon>   Logout </a>
+  
+      </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <div style="height: 88vh;">
+      <router-outlet></router-outlet> 
+      </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+
+
