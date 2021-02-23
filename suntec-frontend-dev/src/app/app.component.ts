@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'suntec-frontend-dev-test';
+  title = 'suntec-frontend-dev-Mandeep';
 }
