@@ -129,5 +129,8 @@
       }
     }
   },
-  "defaultProject": "suntec-frontend-dev"
+  "defaultProject": "suntec-frontend-dev",
+  "cli": {
+    "analytics": "c6300333-7db2-4d3d-b933-f5f23c8a51b9"
+  }
 }

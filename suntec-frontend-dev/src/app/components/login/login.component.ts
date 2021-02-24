@@ -26,16 +26,16 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(formData:any) {
-    var name = formData['username'];
+     var name = formData['username'];
     this.userLoginService.login(formData['username'], formData['password'],).subscribe(data => {
-      if(data)this.router.navigate(['/navigation']);
-      else this.router.navigate([''])
-    }, err => {
+       if(data)this.router.navigate(['/navigation']);
+       else this.router.navigate([''])
+     }, err => {
       if(!err || err.status !== 409) {
         this.errorMessage = "Unexpected error occurred. Error : " + err;
       }else {
         this.errorMessage = "Username is already exist";
-      }
-    });
+       }
+     });
   }
 }

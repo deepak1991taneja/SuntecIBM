@@ -1,0 +1,46 @@
+
+  
+  <p>
+    <mat-toolbar color="primary">
+      <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <div class="primary-logo">
+        <img  src="assets/images/logo-white.jpeg" class="om-logo">
+      </div>
+      
+      <span class="example-spacer"></span>
+      
+     <button mat-button [matMenuTriggerFor]="menu"><mat-icon>settings</mat-icon></button>
+<mat-menu #menu="matMenu">
+  <button mat-menu-item><mat-icon>account_circle</mat-icon>Users</button>
+  <button mat-menu-item><mat-icon>settings</mat-icon>setting</button>
+  <button mat-menu-item><mat-icon>language</mat-icon>Language</button>
+  <button mat-menu-item><mat-icon>notifications</mat-icon>Notifications</button>
+</mat-menu>
+      
+      <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon" [routerLink]="''">
+        <mat-icon>exit_to_app</mat-icon>
+       </button>
+       
+      <div class="primary-logo">
+        <img style="width:60px; height: 30px; border-radius: 25%;" src="assets/images/avatar-01.jpg" class="om-logo">
+      </div>
+    </mat-toolbar>
+  </p>
+  <div style="margin-top: 6rem;">
+  <mat-grid-list cols="2" rowHeight="2:1">
+        <mat-grid-tile >
+            <div class="add-staff">
+                <button mat-fab [routerLink]="'/navigation'" color="primary"><mat-icon>add_circle_outline</mat-icon></button> 
+            </div></mat-grid-tile>
+        <mat-grid-tile>
+            <div class="add-staff">
+                <button mat-fab [routerLink]="'/navigation'" color="primary"><mat-icon>add_circle_outline</mat-icon></button>
+            </div>
+        </mat-grid-tile>
+  </mat-grid-list>
+  </div>
+  
+
+  

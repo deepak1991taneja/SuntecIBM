@@ -4,9 +4,14 @@ import { AddPersonComponent } from './components/dashboard/add-person/add-person
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { LoginComponent } from './components/login/login.component';
 import { NevigationComponent } from './components/navigation/nevigation.component';
+import { SelectAppComponent } from './components/select-app/select-app.component';
 
 const routes: Routes = [
   {path:'' , component:LoginComponent},
+  
+  {path:'selectApp',
+    component: SelectAppComponent,},
+
   {path:'navigation' ,
    component:NevigationComponent,
    children: [

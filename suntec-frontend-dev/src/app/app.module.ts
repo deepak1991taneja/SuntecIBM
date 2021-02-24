@@ -15,6 +15,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import {MatGridListModule} from '@angular/material/grid-list';
+import {MatMenuModule} from '@angular/material/menu';
 import 'hammerjs';
 import { LoginComponent } from './components/login/login.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
@@ -31,6 +33,7 @@ import {MatRadioModule} from '@angular/material/radio';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule, MatRippleModule} from '@angular/material/core';
 import { MaterialFileInputModule } from 'ngx-material-file-input';
+import { SelectAppComponent } from './components/select-app/select-app.component';
 @NgModule({
   declarations: [ 
     AppComponent,
@@ -38,7 +41,8 @@ import { MaterialFileInputModule } from 'ngx-material-file-input';
     SignUpComponent,
     DashboardComponent,
     NevigationComponent,
-    AddPersonComponent
+    AddPersonComponent,
+    SelectAppComponent
   ],
   imports: [
     BrowserModule,
@@ -65,7 +69,9 @@ import { MaterialFileInputModule } from 'ngx-material-file-input';
     MatDatepickerModule,
     MatNativeDateModule,
     MatRippleModule,
-    MaterialFileInputModule
+    MaterialFileInputModule,
+    MatGridListModule,
+    MatMenuModule
 
   ],
   providers: [],
