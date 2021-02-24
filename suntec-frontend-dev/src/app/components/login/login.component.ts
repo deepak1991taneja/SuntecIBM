@@ -15,13 +15,20 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
   formGroup;
-
+  language: any[] = [
+    { name: 'English' },
+    { name: 'Chinese' },
+    { name: 'Tamil' },
+];
   constructor(
     private formBuilder: FormBuilder, private userLoginService: UsersLoginService, private router: Router
   ) {
+
+
     this.formGroup = this.formBuilder.group({
       username: ['', Validators.required],
       password: ['', Validators.required],
+      language: ['', [Validators.required]]
     });
   }
 
