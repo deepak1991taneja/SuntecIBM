@@ -18,6 +18,7 @@ import {MatSelectModule} from '@angular/material/select'
 import { FlexLayoutModule } from '@angular/flex-layout';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatMenuModule} from '@angular/material/menu';
+import {MatBadgeModule} from '@angular/material/badge';
 import 'hammerjs';
 import { LoginComponent } from './components/login/login.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
@@ -35,6 +36,7 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule, MatRippleModule} from '@angular/material/core';
 import { MaterialFileInputModule } from 'ngx-material-file-input';
 import { SelectAppComponent } from './components/select-app/select-app.component';
+import { MaterialElevationDirective } from './components/select-app/material-elevation.directive';
 @NgModule({
   declarations: [ 
     AppComponent,
@@ -43,7 +45,8 @@ import { SelectAppComponent } from './components/select-app/select-app.component
     DashboardComponent,
     NevigationComponent,
     AddPersonComponent,
-    SelectAppComponent
+    SelectAppComponent,
+    MaterialElevationDirective
   ],
   imports: [
     BrowserModule,
@@ -74,7 +77,8 @@ import { SelectAppComponent } from './components/select-app/select-app.component
     MatGridListModule,
     MatMenuModule,
     MatSelectModule,
-    LayoutModule
+    LayoutModule,
+    MatBadgeModule
 
   ],
   providers: [],

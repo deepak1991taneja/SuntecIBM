@@ -1,12 +1,12 @@
 
   
   <p>
-    <mat-toolbar color="primary">
+    <mat-toolbar color="primary" >
       <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
         <mat-icon>menu</mat-icon>
       </button>
       <div class="primary-logo">
-        <img  src="assets/images/logo-white.jpeg" class="om-logo">
+        <img  mat-card-avatar src="assets/images/logo-dash.png" style="width: 250px; height: 60px;" class="om-logo">
       </div>
       
       <span class="example-spacer"></span>
@@ -19,27 +19,27 @@
   <button mat-menu-item><mat-icon>notifications</mat-icon>Notifications</button>
 </mat-menu>
       
-      <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon" [routerLink]="''">
-        <mat-icon>exit_to_app</mat-icon>
-       </button>
-       
-      <div class="primary-logo">
-        <img style="width:60px; height: 30px; border-radius: 25%;" src="assets/images/avatar-01.jpg" class="om-logo">
-      </div>
+<button mat-button [matMenuTriggerFor]="logout"><mat-icon>account_circle</mat-icon></button>
+<mat-menu #logout="matMenu">
+  <button mat-menu-item [routerLink]="''"><mat-icon>exit_to_app</mat-icon>Logout</button>
+</mat-menu>
+     
     </mat-toolbar>
   </p>
-  <div style="margin-top: 6rem;">
-  <mat-grid-list cols="2" rowHeight="2:1">
-        <mat-grid-tile >
-            <div class="add-staff">
-                <button mat-fab [routerLink]="'/navigation'" color="primary"><mat-icon>add_circle_outline</mat-icon></button> 
-            </div></mat-grid-tile>
-        <mat-grid-tile>
-            <div class="add-staff">
-                <button mat-fab [routerLink]="'/navigation'" color="primary"><mat-icon>add_circle_outline</mat-icon></button>
-            </div>
-        </mat-grid-tile>
-  </mat-grid-list>
+  <div fxLayoutAlign="center center" class="app-main" > 
+    <ng-container *ngFor="let item of titles">
+      <mat-card (click)="select(item)"  fxFlex="15 10" 
+        [class.mat-elevation-z2]="!item.isSelected" 
+        [class.mat-elevation-z8]="item.isSelected">
+        <mat-card-header>
+          
+          <mat-card-title> {{item.detail}}</mat-card-title>
+        </mat-card-header>
+        <mat-card-content fxLayoutAlign="center">
+          <img  mat-card-avatar fxLayoutAlign="center" src={{item.image}} style="width: 250px; height: 250px;" alt="Photo of a Shiba Inu">
+        </mat-card-content>
+      </mat-card><br>
+      </ng-container>
   </div>
   
 
