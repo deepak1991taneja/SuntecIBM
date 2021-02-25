@@ -37,6 +37,8 @@ import {MatNativeDateModule, MatRippleModule} from '@angular/material/core';
 import { MaterialFileInputModule } from 'ngx-material-file-input';
 import { SelectAppComponent } from './components/select-app/select-app.component';
 import { MaterialElevationDirective } from './components/select-app/material-elevation.directive';
+import { AppSettingComponent } from './components/app-setting/app-setting.component';
+import { SettingDashboardComponent } from './components/app-setting/setting-dashboard/setting-dashboard.component';
 @NgModule({
   declarations: [ 
     AppComponent,
@@ -46,7 +48,9 @@ import { MaterialElevationDirective } from './components/select-app/material-ele
     NevigationComponent,
     AddPersonComponent,
     SelectAppComponent,
-    MaterialElevationDirective
+    MaterialElevationDirective,
+    AppSettingComponent,
+    SettingDashboardComponent
   ],
   imports: [
     BrowserModule,

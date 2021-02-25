@@ -1,0 +1,62 @@
+.example-spacer {
+    flex: 1 1 auto;
+  }
+
+  mat-toolbar{
+    background-color: #e6e9ec;
+      height: 5rem;;
+  }
+
+  mat-card{
+    padding: 2.5rem;
+    margin: 2rem;
+   background-color:#f8f8f8;
+  }
+
+  .app-main{
+    padding: 10rem;
+  }
+
+  p {
+    font-family: Lato;
+  }
+
+  mat-card:hover  {
+    box-shadow: 0 5px 5px -3px rgba(0,0,0,.2), 0 8px 10px 1px rgba(0,0,0,.14), 0 3px 14px 2px rgba(0,0,0,.12);
+  }
+
+  .om-logo{
+    border-radius: 0;
+    object-fit: inherit;
+  }
+
+  .example-container {
+    position: absolute;
+    top: 80px;
+    bottom: 0px;
+    left: 0;
+    right: 0;
+  }
+  
+  .example-sidenav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 15rem;
+    background: #e3e4e7;
+  }
+  
+  .example-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+  }
+  
+  .example-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+  

@@ -11,16 +11,17 @@
       
       <span class="example-spacer"></span>
       
-     <button mat-button [matMenuTriggerFor]="menu"><mat-icon>settings</mat-icon></button>
+      <button mat-fab [routerLink]="'/app-setting'" color="primary"><mat-icon>add_circle_outline</mat-icon> </button>
+     <!-- <button mat-button [matMenuTriggerFor]="menu"><mat-icon>settings</mat-icon></button>
 <mat-menu #menu="matMenu">
   <button mat-menu-item><mat-icon>account_circle</mat-icon>Users</button>
   <button mat-menu-item><mat-icon>settings</mat-icon>setting</button>
   <button mat-menu-item><mat-icon>language</mat-icon>Language</button>
   <button mat-menu-item><mat-icon>notifications</mat-icon>Notifications</button>
-</mat-menu>
+</mat-menu> -->
       
-<button mat-button [matMenuTriggerFor]="logout"><mat-icon>account_circle</mat-icon></button>
-<mat-menu #logout="matMenu">
+<button mat-fab [matMenuTriggerFor]="logout" color="primary" ><mat-icon>account_circle</mat-icon></button>
+<mat-menu #logout="matMenu" xPosition="after" class="menu-without-scroll">
   <button mat-menu-item [routerLink]="''"><mat-icon>exit_to_app</mat-icon>Logout</button>
 </mat-menu>
      

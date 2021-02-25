@@ -1,0 +1,31 @@
+
+  
+<p  class="example-header" >
+    <mat-toolbar color="primary" >
+      <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <div class="primary-logo">
+        <img  mat-card-avatar src="assets/images/logo-dash.png" style="width: 250px; height: 60px;" class="om-logo">
+      </div>
+      
+      <span class="example-spacer"></span>
+      
+<button mat-fab [matMenuTriggerFor]="logout" color="primary" ><mat-icon>account_circle</mat-icon></button>
+<mat-menu #logout="matMenu" xPosition="after" class="menu-without-scroll">
+  <button mat-menu-item [routerLink]="''"><mat-icon>exit_to_app</mat-icon>Logout</button>
+</mat-menu>
+     
+    </mat-toolbar>
+</p>
+  <mat-sidenav-container class="example-container">
+    <mat-sidenav #sidenav mode="side" opened class="example-sidenav"
+                 [fixedInViewport]="options.value.fixed" [fixedTopGap]="options.value.top"
+                 [fixedBottomGap]="options.value.bottom">
+       Sidenav
+    </mat-sidenav>
+    <mat-sidenav-content >
+        <router-outlet></router-outlet> 
+        </mat-sidenav-content>
+    </mat-sidenav-container>
+

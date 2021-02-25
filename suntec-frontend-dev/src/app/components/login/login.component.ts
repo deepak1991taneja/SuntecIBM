@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
 
   onSubmit(formData:any) {
      var name = formData['username'];
-     this.router.navigate(['/selectApp']);
+     this.router.navigate(['/app-select']);
     /*this.userLoginService.login(formData['username'], formData['password'],).subscribe(data => {
        if(data)this.router.navigate(['/navigation']);
        else this.router.navigate([''])

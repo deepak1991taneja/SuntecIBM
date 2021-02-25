@@ -17,7 +17,7 @@ export class SelectAppComponent implements OnInit {
   defaultElevation = 8;
   raisedElevation = 16;
 
-  titles:title[] = [{name:'Application', detail:"Tanent Management Staff", image:"assets/images/tms.png"}, {name:'Application', detail:"Visitor Management Staff", image:"assets/images/visitor.jpg"}];
+  titles:title[] = [{name:'TMS', detail:"Tanent Management Staff", image:"assets/images/tms.png"}, {name:'VMS', detail:"Visitor Management Staff", image:"assets/images/visitor.jpg"}];
   titleSelected:any;
 
   name = 'Angular';
@@ -26,7 +26,12 @@ export class SelectAppComponent implements OnInit {
     this.titles.map(t=>t.isSelected = false);
     title.isSelected = true;
     this.titleSelected = title;
-    console.log(this.titles);
+    console.log(title.name);
+    if(title.name==="TMS"){
+console.log("tms");
+    }else if(title.name==="VMS"){
+console.log("vms");
+    }
   }
 }
 
