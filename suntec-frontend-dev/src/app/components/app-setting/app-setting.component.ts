@@ -1,4 +1,9 @@
+<<<<<<< HEAD
 import { Component, OnInit,ViewChild } from '@angular/core';
+=======
+import { Component, OnInit } from '@angular/core';
+import {animate, state, style, transition, trigger} from '@angular/animations';
+>>>>>>> 1693b30231bb3af9a2469740491eab7cbf0cb5e0
 import { FormBuilder, FormGroup } from '@angular/forms';
 import {MatPaginator} from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -8,11 +13,18 @@ import {MatTableDataSource} from '@angular/material/table';
 @Component({
   selector: 'app-app-setting',
   templateUrl: './app-setting.component.html',
-  styleUrls: ['./app-setting.component.scss']
+  styleUrls: ['./app-setting.component.scss'],
+  animations: [
+    trigger('indicatorRotate', [
+      state('collapsed', style({transform: 'rotate(0deg)'})),
+      state('expanded', style({transform: 'rotate(180deg)'})),
+      transition('expanded <=> collapsed',
+        animate('225ms cubic-bezier(0.4,0.0,0.2,1)')
+      ),
+    ])
+  ]
 })
 export class AppSettingComponent implements OnInit {
- 
-  options: FormGroup;
   displayedColumns: string[] = ['Position', 'Name', 'Roles', 'Floor','Company','Email'];
   dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
 
@@ -23,11 +35,7 @@ export class AppSettingComponent implements OnInit {
 
   
     constructor(fb: FormBuilder) {
-    this.options = fb.group({
-      bottom: 0,
-      fixed: false,
-      top: 0
-    });
+ 
   }
 
   shouldRun = [/(^|\.)plnkr\.co$/, /(^|\.)stackblitz\.io$/].some(h => h.test(window.location.host));

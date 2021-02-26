@@ -19,6 +19,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatBadgeModule} from '@angular/material/badge';
+import {MatExpansionModule} from '@angular/material/expansion';
+import {MatDividerModule} from '@angular/material/divider';
 import 'hammerjs';
 import { LoginComponent } from './components/login/login.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
@@ -82,7 +84,9 @@ import { SettingDashboardComponent } from './components/app-setting/setting-dash
     MatMenuModule,
     MatSelectModule,
     LayoutModule,
-    MatBadgeModule
+    MatBadgeModule,
+    MatExpansionModule,
+    MatDividerModule
 
   ],
   providers: [],
