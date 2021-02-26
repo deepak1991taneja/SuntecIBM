@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AppSettingComponent } from './components/app-setting/app-setting.component';
+import { SettingDashboardComponent } from './components/app-setting/setting-dashboard/setting-dashboard.component';
 import { AddPersonComponent } from './components/dashboard/add-person/add-person.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { LoginComponent } from './components/login/login.component';
@@ -43,7 +44,7 @@ const routes: Routes = [
    },
    {
      path:'dashboard' , 
-     component:DashboardComponent
+     component:SettingDashboardComponent
  },
  {
    path:'add-person' , 
