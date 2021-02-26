@@ -1,1 +1,60 @@
-<p>setting-dashboard works!</p>
+
+    <div class="labelDiv"><label>Account Management</label></div>
+
+    <mat-card class="example-card">
+      <mat-card-header>
+          <mat-card-title>Account List</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="mat-elevation-z8 tableDiv">
+          <mat-form-field>
+       <mat-label>Filter</mat-label>
+       <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
+     </mat-form-field>
+           <table mat-table [dataSource]="dataSource">
+                     
+             <ng-container matColumnDef="Position">
+               <th mat-header-cell *matHeaderCellDef mat-sort-header> No. </th>
+               <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+             </ng-container>
+                      
+             <ng-container matColumnDef="Name">
+               <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+               <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+             </ng-container>
+                     
+             <ng-container matColumnDef="Roles" >
+               <th mat-header-cell *matHeaderCellDef mat-sort-header> Roles </th>
+               <td mat-cell *matCellDef="let element"> {{element.roles}} </td>
+             </ng-container>
+                       
+             <ng-container matColumnDef="Floor">
+               <th mat-header-cell *matHeaderCellDef mat-sort-header> Floor </th>
+               <td mat-cell *matCellDef="let element"> {{element.floor}} </td>
+             </ng-container>
+
+             <ng-container matColumnDef="Company">
+               <th mat-header-cell *matHeaderCellDef mat-sort-header> Company </th>
+               <td mat-cell *matCellDef="let element"> {{element.company}} </td>
+             </ng-container>
+
+             <ng-container matColumnDef="Email">
+               <th mat-header-cell *matHeaderCellDef mat-sort-header> Email </th>
+               <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+             </ng-container>
+         
+             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+             <tr class="mat-row" *matNoDataRow>
+               <td class="mat-cell" colspan="6">No data matching the filter "{{input.value}}"</td>
+             </tr>
+           </table>
+         
+           <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+         </div>
+      </mat-card-content>
+      </mat-card>
+      
+
+              
