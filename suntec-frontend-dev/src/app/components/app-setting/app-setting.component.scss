@@ -43,7 +43,7 @@
     align-items: center;
     justify-content: center;
     width: 15rem;
-    background: #e3e4e7;
+   // background: #e3e4e7;
   }
   
   .example-header {
@@ -60,3 +60,39 @@
     right: 0;
   }
   
+  mat-list-item a{
+      padding: rem;
+  }
+
+  a:hover, a:active{
+    color: rgb(48, 57, 139);
+}
+.nav-caption{
+    display: inline-block;
+    padding-left: 1rem;
+   
+}
+
+.nav-icon{
+  display: inline-block;
+  padding-left: 6rem;
+}
+.mat-list-base .mat-list-item{
+    padding-top: .6rem;
+    padding-bottom: 0.6rem;
+}
+
+mat-menu{
+  position: fixed !important;
+}
+
+.nav-setting{
+  position: absolute;
+    right: 0;
+    left: auto;
+}
+
+::ng-deep .mat-menu-panel{
+  margin-left: 15rem;
+  margin-top:20rem;
+}
