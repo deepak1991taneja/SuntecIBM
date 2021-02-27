@@ -59,36 +59,7 @@
     left: 0;
     right: 0;
   }
-  table {
-    height: auto;
-    width: 100%;
-  }
-  th{
-    font-size: 20px ;
-    font-weight: bold;
-    background-color:#cfcfcf
-  }
-  td{
-    font-size: 18px ;
-    // text-align: center;
-  }
-  .tableDiv{
-    margin-top: 5rem;
-    margin-left: 1rem;
-    margin-right: 1rem;
-  }
-  .labelDiv{
-    margin-top: 10px;
-    margin-left: 10px;
-   }
-   label{
-    font-size: 25px;
-    color:rgb(104, 102, 101);
-   }
-   .mat-form-field {
-    font-size: 18px;
-    width: 100%;
-  }
+  
   mat-list-item a{
       padding: rem;
   }
@@ -122,7 +93,6 @@ mat-menu{
 }
 
 ::ng-deep .mat-menu-panel{
-  margin-left: 15rem;
-  margin-top:20rem;
+  margin-left: 15rem !important;
+  margin-top:20rem !important;
 }
-
