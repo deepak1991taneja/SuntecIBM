@@ -1,0 +1,19 @@
+<h1 style="background-color:rgb(78, 94, 233);">Add Account User </h1>
+<div mat-dialog-content>   
+  <mat-form-field>
+    <label style=" font-size: 17px ; font-weight: bold;">Name</label>
+    <input matInput [(ngModel)]="data.name">
+    <br><br><label style=" font-size: 17px ; font-weight: bold;">Roles</label>
+    <input matInput [(ngModel)]="data.roles">
+    <br><br><label style=" font-size: 17px ; font-weight: bold;">Floor</label>
+    <input matInput [(ngModel)]="data.floor">
+    <br><br><label style=" font-size: 17px ; font-weight: bold;">Company</label>
+    <input matInput [(ngModel)]="data.company">
+    <br><br><label style=" font-size: 17px ; font-weight: bold;">Email</label>
+    <input matInput [(ngModel)]="data.email">
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">No Thanks</button>
+  <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Ok</button>
+</div>

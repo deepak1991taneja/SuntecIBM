@@ -20,7 +20,7 @@
         </mat-menu>
         <button mat-mini-fab  color="primary" class="table-button" ><mat-icon>delete_sweep</mat-icon></button>
         <button mat-mini-fab  color="primary" class="table-button" ><mat-icon>edit</mat-icon></button>
-        <button mat-mini-fab  color="primary" class="table-button" ><mat-icon>add</mat-icon></button>
+        <button mat-mini-fab (click)="openDialog()"  color="primary" class="table-button" ><mat-icon>add</mat-icon></button>
         <button mat-mini-fab  color="primary" [matMenuTriggerFor]="addMore" class="table-button" ><mat-icon>drag_indicator</mat-icon></button>
         <mat-menu #addMore="matMenu" xPosition="after" class="menu-without-scroll">
           <button mat-menu-item [routerLink]="''"><mat-icon>add</mat-icon>Option-1</button>

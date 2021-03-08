@@ -8,6 +8,7 @@ import { LoginComponent } from './components/login/login.component';
 import { NevigationComponent } from './components/navigation/nevigation.component';
 import { SelectAppComponent } from './components/select-app/select-app.component';
 
+
 const routes: Routes = [
   {path:'' , component:LoginComponent},
   

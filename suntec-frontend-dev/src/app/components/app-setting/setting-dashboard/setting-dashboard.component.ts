@@ -1,7 +1,9 @@
-import { Component, OnInit,ViewChild } from '@angular/core';
+import { Component, Inject, OnInit,ViewChild } from '@angular/core';
 import {MatPaginator} from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+
 
 @Component({
   selector: 'app-setting-dashboard',
@@ -16,7 +18,38 @@ export class SettingDashboardComponent implements OnInit {
   paginator!: MatPaginator;
   @ViewChild(MatSort)
   sort!: MatSort;
-  constructor() { }
+  
+  name!: string;
+  roles!: string;
+  floor!:string;
+  company!:string;
+  email!:string;
+  
+
+  constructor(public dialog: MatDialog) {}
+
+  openDialog(): void {
+    console.log("dialog clicked");
+    const dialogRef = this.dialog.open(AccountDialogComponent, {
+      width: '300px',
+      data: {name: this.name, roles: this.roles,floor:this.floor,company:this.company,email:this.email}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      this.name = result,this.roles=result,this.floor,this.company,this.floor;
+      console.log('Received  ' + result.roles);
+      this.dataSource.data.push({
+              position:11,
+              name: result.name,
+              roles:result.roles,
+              floor:result.floor,
+              company:result.company,
+              email:result.email
+      });
+      this.dataSource.filter = "";
+          });
+  }
 
   ngOnInit(): void {
     this.dataSource.paginator = this.paginator;
@@ -30,6 +63,22 @@ export class SettingDashboardComponent implements OnInit {
       this.dataSource.paginator.firstPage();
     }
   }
+}
+
+@Component({
+  selector: 'account-dialog-component',
+  templateUrl: './account-dialog.component.html',
+})
+export class AccountDialogComponent {
+
+  constructor(
+    public dialogRef: MatDialogRef<AccountDialogComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: PeriodicElement) {}
+
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
+
 }
 
 export interface PeriodicElement {
