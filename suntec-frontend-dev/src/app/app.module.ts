@@ -21,6 +21,8 @@ import {MatMenuModule} from '@angular/material/menu';
 import {MatBadgeModule} from '@angular/material/badge';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatDividerModule} from '@angular/material/divider';
+import {MatDialogModule} from '@angular/material/dialog';
+import { MatTableExporterModule } from 'mat-table-exporter';
 import 'hammerjs';
 import { LoginComponent } from './components/login/login.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
@@ -41,8 +43,7 @@ import { SelectAppComponent } from './components/select-app/select-app.component
 import { MaterialElevationDirective } from './components/select-app/material-elevation.directive';
 import { AppSettingComponent } from './components/app-setting/app-setting.component';
 import { AccountDialogComponent, SettingDashboardComponent } from './components/app-setting/setting-dashboard/setting-dashboard.component';
-import {MatDialogModule} from '@angular/material/dialog';
-
+import { BuildingDialogComponent, BuildingManagementComponent } from './components/app-setting/building-management/building-management.component';
 @NgModule({
   declarations: [ 
     AppComponent,
@@ -55,8 +56,9 @@ import {MatDialogModule} from '@angular/material/dialog';
     MaterialElevationDirective,
     AppSettingComponent,
     SettingDashboardComponent,
-    AccountDialogComponent
-
+    AccountDialogComponent,
+    BuildingManagementComponent,
+    BuildingDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -91,7 +93,8 @@ import {MatDialogModule} from '@angular/material/dialog';
     MatBadgeModule,
     MatExpansionModule,
     MatDividerModule,
-    MatDialogModule
+    MatDialogModule,
+    MatTableExporterModule
 
   ],
   providers: [],
