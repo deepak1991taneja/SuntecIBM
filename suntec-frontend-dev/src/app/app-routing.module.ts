@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AppSettingComponent } from './components/app-setting/app-setting.component';
+import { BuildingManagementComponent } from './components/app-setting/building-management/building-management.component';
 import { SettingDashboardComponent } from './components/app-setting/setting-dashboard/setting-dashboard.component';
 import { AddPersonComponent } from './components/dashboard/add-person/add-person.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
@@ -47,8 +48,8 @@ const routes: Routes = [
      component:SettingDashboardComponent
  },
  {
-   path:'add-person' , 
-   component:AddPersonComponent
+   path:'building-management' , 
+   component:BuildingManagementComponent
 }
   ]
  },

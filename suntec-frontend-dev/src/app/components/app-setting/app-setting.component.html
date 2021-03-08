@@ -25,9 +25,9 @@
                  [fixedBottomGap]="options.value.bottom">
                  <mat-nav-list>
                     <!-- <a mat-list-item routerLink="." *ngFor="let nav of fillerNav">{{nav}}</a> -->
-                    <a mat-list-item routerLink="." class="nav-anchor"><mat-icon>manage_accounts</mat-icon> <span class="nav-caption">Account Management</span></a>
+                    <a mat-list-item routerLink="/app-setting" class="nav-anchor"><mat-icon>manage_accounts</mat-icon> <span class="nav-caption">Account Management</span></a>
                     <mat-divider></mat-divider>
-                    <a mat-list-item routerLink="." class="nav-anchor"><mat-icon>business</mat-icon> <span class="nav-caption"> Building Management  </span></a>
+                    <a mat-list-item routerLink="/app-setting/building-management" class="nav-anchor"><mat-icon>business</mat-icon> <span class="nav-caption"> Building Management  </span></a>
                     <mat-divider></mat-divider>
                     <a mat-list-item routerLink="." class="nav-anchor"><mat-icon>apartment</mat-icon> <span class="nav-caption">Floor Management</span></a>
                     <mat-divider></mat-divider>
@@ -37,7 +37,7 @@
                     <mat-divider></mat-divider>
                     <a mat-list-item routerLink="." class="nav-anchor"><mat-icon>tablet</mat-icon> <span class="nav-caption">FR Tablet Management</span></a>
                     <mat-divider></mat-divider>
-                    <a mat-list-item routerLink="." class="nav-anchor" [matMenuTriggerFor]="settings"><mat-icon>settings_suggest</mat-icon><span class="nav-caption">Settings</span> 
+                    <a mat-list-item class="nav-anchor" [matMenuTriggerFor]="settings"><mat-icon>settings_suggest</mat-icon><span class="nav-caption">Settings</span> 
                       <mat-icon class="nav-icon">play_arrow</mat-icon></a>
                     <mat-menu #settings="matMenu"  [overlapTrigger]="false"  xPosition="after" yPosition="below">
                       <button mat-menu-item class="nav-anchor"><mat-icon>monitor</mat-icon> <span class="nav-caption">Suntec App Server</span></button>
