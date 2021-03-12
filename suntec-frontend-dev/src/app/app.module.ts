@@ -44,6 +44,7 @@ import { MaterialElevationDirective } from './components/select-app/material-ele
 import { AppSettingComponent } from './components/app-setting/app-setting.component';
 import { AccountDialogComponent, SettingDashboardComponent } from './components/app-setting/setting-dashboard/setting-dashboard.component';
 import { BuildingDialogComponent, BuildingManagementComponent } from './components/app-setting/building-management/building-management.component';
+import { FloorDialogComponent, FloorManagementComponent } from './components/app-setting/floor-management/floor-management.component';
 @NgModule({
   declarations: [ 
     AppComponent,
@@ -58,7 +59,9 @@ import { BuildingDialogComponent, BuildingManagementComponent } from './componen
     SettingDashboardComponent,
     AccountDialogComponent,
     BuildingManagementComponent,
-    BuildingDialogComponent
+    BuildingDialogComponent,
+    FloorManagementComponent,
+    FloorDialogComponent
   ],
   imports: [
     BrowserModule,

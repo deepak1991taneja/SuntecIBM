@@ -5,7 +5,7 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dial
 import {MatPaginator} from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
-import { BuildingDetail } from 'src/app/shared/model/building-detail';
+import { BuildingDetail } from 'src/app/shared/model/building-model/building-detail';
 import { BuildingServiceService } from 'src/app/shared/services/building-service/building-service.service';
 import { TableUtil } from './table-util';
 
@@ -52,8 +52,8 @@ export class BuildingManagementComponent implements OnInit {
   }
 
   setFileName() {
-    this.testFileName = 'StudentDetailsExport' + '_' +
-      new DatePipe('en-US').transform(Date.now(), 'MMM_dd_yyyy_hh_mm_ss', 'UTC') + 'Z';
+    this.testFileName = 'ExportResult' + '_' +
+      new DatePipe('en-US').transform(Date.now(), 'dd_MM_yyyy_hh_mm_ss');
   }
 
   

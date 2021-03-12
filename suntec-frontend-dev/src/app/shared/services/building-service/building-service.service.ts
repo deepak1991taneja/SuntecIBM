@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { BuildingDetail } from '../../model/building-detail';
+import { BuildingDetail } from '../../model/building-model/building-detail';
+
 let API_URL = "http://localhost:8084";
 @Injectable({
   providedIn: 'root'
