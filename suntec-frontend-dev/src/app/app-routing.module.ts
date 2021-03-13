@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AppSettingComponent } from './components/app-setting/app-setting.component';
 import { BuildingManagementComponent } from './components/app-setting/building-management/building-management.component';
+import { DoorManagementComponent } from './components/app-setting/door-management/door-management.component';
 import { FloorManagementComponent } from './components/app-setting/floor-management/floor-management.component';
 import { SettingDashboardComponent } from './components/app-setting/setting-dashboard/setting-dashboard.component';
 import { AddPersonComponent } from './components/dashboard/add-person/add-person.component';
@@ -56,6 +57,10 @@ const routes: Routes = [
 {
   path:'floor-management' , 
   component:FloorManagementComponent
+},
+{
+  path:'door-management' , 
+  component:DoorManagementComponent
 }
   ]
  },
