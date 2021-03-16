@@ -2,11 +2,13 @@ import { DatePipe } from '@angular/common';
 import { Component, Inject, OnInit, Optional, ViewChild } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
+import { MatSnackBar, MAT_SNACK_BAR_DATA } from '@angular/material/snack-bar';
 import { MatTableDataSource } from '@angular/material/table';
 import { CompanyDetail } from 'src/app/shared/model/company-model/company-detail.model';
 import { FloorDetail } from 'src/app/shared/model/floor-model/floor-detail.model';
 import { CompanyServiceService } from 'src/app/shared/services/company-service/company-service.service';
 import { FloorServiceService } from 'src/app/shared/services/floor-service/floor-service.service';
+import { SettingSnakbarComponent } from '../setting-snakbar/setting-snakbar.component';
 import { TableUtil } from '../table-utils';
 
 @Component({
@@ -16,8 +18,7 @@ import { TableUtil } from '../table-utils';
 })
 export class CompanyManagementComponent implements OnInit {
 
-
-
+  durationInSeconds = 1;
   companyData : CompanyDetail[] = [];
   floorData : FloorDetail[] = [];
   companyDetail?:any;
@@ -31,7 +32,7 @@ export class CompanyManagementComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator | any;
  
-  constructor(public dialog: MatDialog, private floorService: FloorServiceService, private companyService: CompanyServiceService) {
+  constructor(public dialog: MatDialog, private floorService: FloorServiceService, private companyService: CompanyServiceService, private _snackBar: MatSnackBar) {
     this.dataSource = new MatTableDataSource<CompanyDetail>();
    }
 
@@ -112,6 +113,16 @@ exportArray() {
       }else if(result.event == 'Delete'){
         this.deleteRowData(result.data);
       }
+      
+        this._snackBar.open("sucessfully "+ result.event + " !!", "Thanks", {
+          duration: 1000,
+        });
+      
+        // this._snackBar.openFromComponent(SettingSnakbarComponent, {
+        //   duration: this.durationInSeconds * 1000,
+        //   data:result.event
+        // });
+
     });
   }
 
@@ -237,3 +248,4 @@ export class CompanyDialogComponent {
   }
 
 }
+

@@ -3,6 +3,7 @@ import { analyzeAndValidateNgModules } from '@angular/compiler';
 import { Component, Inject, OnInit,Optional,ViewChild } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import {MatPaginator} from '@angular/material/paginator';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSort } from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
 import { BuildingDetail } from 'src/app/shared/model/building-model/building-detail';
@@ -28,7 +29,7 @@ export class BuildingManagementComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator | any;
  
-  constructor(public dialog: MatDialog, private buildingService: BuildingServiceService) {
+  constructor(public dialog: MatDialog, private buildingService: BuildingServiceService, private _snackBar: MatSnackBar) {
     this.dataSource = new MatTableDataSource<BuildingDetail>();
    }
 
@@ -97,15 +98,9 @@ exportArray() {
         this.deleteRowData(result.data);
       }
 
-      // console.log('The dialog was closed');
-      // this.name = result;
-
-      // console.log('Received Data' + result);
-      // this.dataSource.data.push({
-      //   id: 5,
-      //   name: result
-      // });
-      // this.dataSource.filter = "";
+      this._snackBar.open("sucessfully "+ result.event + " !!", "Thanks", {
+        duration: 1000,
+      });
     });
   }
 

@@ -22,6 +22,7 @@ import {MatBadgeModule} from '@angular/material/badge';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatDialogModule} from '@angular/material/dialog';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { MatTableExporterModule } from 'mat-table-exporter';
 import 'hammerjs';
 import { LoginComponent } from './components/login/login.component';
@@ -46,7 +47,8 @@ import { AccountDialogComponent, SettingDashboardComponent } from './components/
 import { BuildingDialogComponent, BuildingManagementComponent } from './components/app-setting/building-management/building-management.component';
 import { FloorDialogComponent, FloorManagementComponent } from './components/app-setting/floor-management/floor-management.component';
 import { DoorDialogComponent, DoorManagementComponent } from './components/app-setting/door-management/door-management.component';
-import { CompanyDialogComponent, CompanyManagementComponent } from './components/app-setting/company-management/company-management.component';
+import { CompanyDialogComponent, CompanyManagementComponent} from './components/app-setting/company-management/company-management.component';
+import { SettingSnakbarComponent } from './components/app-setting/setting-snakbar/setting-snakbar.component';
 @NgModule({
   declarations: [ 
     AppComponent,
@@ -67,7 +69,8 @@ import { CompanyDialogComponent, CompanyManagementComponent } from './components
     DoorManagementComponent,
     DoorDialogComponent,
     CompanyManagementComponent,
-    CompanyDialogComponent
+    CompanyDialogComponent,
+    SettingSnakbarComponent
   ],
   imports: [
     BrowserModule,
@@ -103,7 +106,8 @@ import { CompanyDialogComponent, CompanyManagementComponent } from './components
     MatExpansionModule,
     MatDividerModule,
     MatDialogModule,
-    MatTableExporterModule
+    MatTableExporterModule,
+    MatSnackBarModule
 
   ],
   providers: [],

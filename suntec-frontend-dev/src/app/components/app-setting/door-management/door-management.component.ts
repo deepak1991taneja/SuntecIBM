@@ -2,6 +2,7 @@ import { DatePipe } from '@angular/common';
 import { Component, Inject, OnInit, Optional, ViewChild } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableDataSource } from '@angular/material/table';
 import { DoorDetail } from 'src/app/shared/model/door-model/door-detail.model';
 import { FloorDetail } from 'src/app/shared/model/floor-model/floor-detail.model';
@@ -28,7 +29,7 @@ export class DoorManagementComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator | any;
  
-  constructor(public dialog: MatDialog, private doorService: DoorServiceService, private floorService: FloorServiceService) {
+  constructor(public dialog: MatDialog, private doorService: DoorServiceService, private floorService: FloorServiceService, private _snackBar: MatSnackBar) {
     this.dataSource = new MatTableDataSource<DoorDetail>();
    }
 
@@ -107,6 +108,10 @@ exportArray() {
       }else if(result.event == 'Delete'){
         this.deleteRowData(result.data);
       }
+
+      this._snackBar.open("sucessfully "+ result.event + " !!", "Thanks", {
+        duration: 1000,
+      });
     });
   }
 
