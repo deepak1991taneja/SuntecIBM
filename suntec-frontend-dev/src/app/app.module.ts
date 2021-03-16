@@ -22,6 +22,7 @@ import {MatBadgeModule} from '@angular/material/badge';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatDialogModule} from '@angular/material/dialog';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { MatTableExporterModule } from 'mat-table-exporter';
 import 'hammerjs';
 import { LoginComponent } from './components/login/login.component';
@@ -45,7 +46,12 @@ import { AppSettingComponent } from './components/app-setting/app-setting.compon
 import { AccountDialogComponent, SettingDashboardComponent } from './components/app-setting/setting-dashboard/setting-dashboard.component';
 import { BuildingDialogComponent, BuildingManagementComponent } from './components/app-setting/building-management/building-management.component';
 import { FloorDialogComponent, FloorManagementComponent } from './components/app-setting/floor-management/floor-management.component';
+
 import {FrTabletDialogComponent, FrTabletComponent } from './components/app-setting/fr-tablet/fr-tablet.component';
+
+import { DoorDialogComponent, DoorManagementComponent } from './components/app-setting/door-management/door-management.component';
+import { CompanyDialogComponent, CompanyManagementComponent} from './components/app-setting/company-management/company-management.component';
+import { SettingSnakbarComponent } from './components/app-setting/setting-snakbar/setting-snakbar.component';
 @NgModule({
   declarations: [ 
     AppComponent,
@@ -64,7 +70,12 @@ import {FrTabletDialogComponent, FrTabletComponent } from './components/app-sett
     FloorManagementComponent,
     FloorDialogComponent,
     FrTabletComponent,
-    FrTabletDialogComponent
+    FrTabletDialogComponent,
+    DoorManagementComponent,
+    DoorDialogComponent,
+    CompanyManagementComponent,
+    CompanyDialogComponent,
+    SettingSnakbarComponent
   ],
   imports: [
     BrowserModule,
@@ -100,7 +111,8 @@ import {FrTabletDialogComponent, FrTabletComponent } from './components/app-sett
     MatExpansionModule,
     MatDividerModule,
     MatDialogModule,
-    MatTableExporterModule
+    MatTableExporterModule,
+    MatSnackBarModule
 
   ],
   providers: [],

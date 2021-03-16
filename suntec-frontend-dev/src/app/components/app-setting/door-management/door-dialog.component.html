@@ -1,0 +1,37 @@
+<!-- dialog-box.component.html -->
+<h1 mat-dialog-title><strong>{{action}}</strong> - Door Data</h1>
+<div fxLayout="column" fxLayoutAlign="center" mat-dialog-content *ngIf="action != 'Delete'; else elseTemplate"> 
+ 
+  <mat-form-field>
+    <input placeholder="{{action}} Door Name" matInput [(ngModel)]="local_data.doorName">
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>select Floor</mat-label>
+    <mat-select [(ngModel)]="local_data.floorName" >
+      <mat-option *ngFor="let data of local_data.floorData" [value]="data"  >{{data.floorName}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+    <!-- <mat-form-field>
+        <input placeholder="{{action}} Building Name" matInput [(ngModel)]="local_data.buildingName">
+      </mat-form-field> -->
+    <mat-form-field>
+    <input placeholder="{{action}} Range" matInput [(ngModel)]="local_data.range">
+  </mat-form-field>
+
+  <mat-form-field>
+    <input placeholder="{{action}} Company Name" matInput [(ngModel)]="local_data.companyName">
+  </mat-form-field>
+
+  <mat-form-field>
+    <input placeholder="{{action}} Endpoint Name" matInput [(ngModel)]="local_data.endPointName">
+  </mat-form-field>
+ 
+</div>
+<ng-template #elseTemplate>
+    Sure to delete <b>{{local_data.doorName}}</b>?
+  </ng-template>
+<div mat-dialog-actions>
+  <button mat-flat-button color="primary"  (click)="doAction()">{{action}}</button>
+  <button mat-button (click)="closeDialog()" mat-flat-button color="warn">Cancel</button>
+</div>

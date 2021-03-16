@@ -1,0 +1,37 @@
+<!-- dialog-box.component.html -->
+<h1 mat-dialog-title><strong>{{action}}</strong> - Company Data</h1>
+<div fxLayout="column" fxLayoutAlign="center" mat-dialog-content *ngIf="action != 'Delete'; else elseTemplate" > 
+  
+  <mat-form-field>
+    <input placeholder="{{action}} Company Name" matInput [(ngModel)]="local_data.companyName" autocomplete="off">
+  </mat-form-field>
+  
+  <mat-form-field appearance="fill">
+    <mat-label>select Floor</mat-label>
+    <mat-select [(ngModel)]="local_data.floor" multiple class="example-ripple-form-field">
+      <mat-option *ngFor="let data of local_data.floorName" [value]="data.floorName"  >{{data.floorName}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+    <!-- <mat-form-field>
+        <input placeholder="{{action}} Building Name" matInput [(ngModel)]="local_data.buildingName">
+      </mat-form-field> -->
+    <mat-form-field>
+    <input placeholder="{{action}} Contact Person" matInput [(ngModel)]="local_data.contactPerson" autocomplete="off">
+  </mat-form-field>
+
+  <mat-form-field>
+    <input placeholder="{{action}} Unit Number" matInput [(ngModel)]="local_data.unitNumber" autocomplete="off">
+  </mat-form-field>
+
+  <mat-form-field>
+    <input placeholder="{{action}} Contact Number" matInput [(ngModel)]="local_data.contactNumber" autocomplete="off">
+  </mat-form-field>
+</div>
+<ng-template #elseTemplate>
+    Sure to delete <b>{{local_data.companyName}}</b>?
+  </ng-template>
+<div mat-dialog-actions>
+  <button mat-flat-button color="primary"  (click)="doAction()">{{action}}</button>
+  <button mat-button (click)="closeDialog()" mat-flat-button color="warn">Cancel</button>
+</div>

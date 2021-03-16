@@ -4,45 +4,43 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dial
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableDataSource } from '@angular/material/table';
-import { BuildingDetail } from 'src/app/shared/model/building-model/building-detail';
+import { DoorDetail } from 'src/app/shared/model/door-model/door-detail.model';
 import { FloorDetail } from 'src/app/shared/model/floor-model/floor-detail.model';
-import { BuildingServiceService } from 'src/app/shared/services/building-service/building-service.service';
+import { DoorServiceService } from 'src/app/shared/services/door-service/door-service.service';
 import { FloorServiceService } from 'src/app/shared/services/floor-service/floor-service.service';
-import { TableUtil } from '../table-utils';
+import { TableUtil } from '../building-management/table-util';
 
 @Component({
-  selector: 'app-floor-management',
-  templateUrl: './floor-management.component.html',
-  styleUrls: ['./floor-management.component.scss']
+  selector: 'app-door-management',
+  templateUrl: './door-management.component.html',
+  styleUrls: ['./door-management.component.scss']
 })
-export class FloorManagementComponent implements OnInit {
-
-
+export class DoorManagementComponent implements OnInit {
+  doorData : DoorDetail[] = [];
   floorData : FloorDetail[] = [];
-  buildingData : BuildingDetail[] = [];
-  floorDetail?:any;
-  dataSource!: MatTableDataSource<FloorDetail>;
+  doorDetail?:any;
+  dataSource!: MatTableDataSource<DoorDetail>;
   errorMessage!: string;
   testFileName = 'SampleFile';
   exporter:any;
 
-  displayedColumns: string[] = ['id', 'buildingName', 'floorName', 'floor', 'Action'];
+  displayedColumns: string[] = ['id', 'doorName','range', 'floorName', 'companyName', 'endPointName', 'Action'];
   //dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
 
   @ViewChild(MatPaginator) paginator: MatPaginator | any;
  
-  constructor(public dialog: MatDialog, private floorService: FloorServiceService, private buildingService: BuildingServiceService, private _snackBar: MatSnackBar) {
-    this.dataSource = new MatTableDataSource<FloorDetail>();
+  constructor(public dialog: MatDialog, private doorService: DoorServiceService, private floorService: FloorServiceService, private _snackBar: MatSnackBar) {
+    this.dataSource = new MatTableDataSource<DoorDetail>();
    }
 
   ngOnInit(): void {
-     this.floorService.getFloorData().subscribe(data => {
-       this.floorData = data;
-       this.dataSource.data = this.floorData;
+     this.doorService.getDoorData().subscribe(data => {
+       this.doorData = data;
+       this.dataSource.data = this.doorData;
       })
 
-      this.buildingService.getBuildingData().subscribe(data => {
-        this.buildingData = data;
+      this.floorService.getFloorData().subscribe(data => {
+        this.floorData = data;
       })
 
    //this.dataSource.data = this.floorData;
@@ -78,11 +76,13 @@ exportTable2(): void {
   })
 }
 exportArray() {
-  const onlyNameAndSymbolArr: Partial<FloorDetail>[] = this.dataSource.data.map(x => ({
-    buildingName: x.buildingName,
+  const onlyNameAndSymbolArr: Partial<DoorDetail>[] = this.dataSource.data.map(x => ({
     id: x.id,
+    doorName: x.doorName,
     floorName: x.floorName,
-    floor:x.floor
+    range:x.range,
+    companyName: x.companyName,
+    endpointName:x.endPointName
 
   }));
   TableUtil.exportArrayToExcel(onlyNameAndSymbolArr, "ExampleArray");
@@ -91,9 +91,9 @@ exportArray() {
   openDialog(action:String,obj:any) {
     console.log("Operation Clicked" + action);
     obj.action = action;
-    obj.buildName = this.buildingData;
+    obj.floorData = this.floorData;
     console.log("add bulding clicked" + obj.action);
-    const dialogRef = this.dialog.open(FloorDialogComponent, {
+    const dialogRef = this.dialog.open(DoorDialogComponent, {
       width: '350px',
       minHeight:'200px',
       data: obj
@@ -115,20 +115,20 @@ exportArray() {
     });
   }
 
-
-
-addRowData(row_obj:FloorDetail){
-console.log("data received :: " + row_obj.id + "  name " + row_obj.buildingName.name)
-  this.floorService.addUpdateFloor(row_obj).subscribe(data => {
+addRowData(row_obj:DoorDetail){
+console.log("data received :: " + row_obj.id + "  name " + row_obj.floorName.floorName)
+  this.doorService.addUpdateDoor(row_obj).subscribe(data => {
     if(data !== null) {
-      this.floorDetail = data;
+      this.doorDetail = data;
       this.dataSource.data.push({
-        id:this.floorDetail.id,
-        buildingName:this.floorDetail.buildingName,
-        floorName:this.floorDetail.floorName,
-        floor: this.floorDetail.floor,
-        createdDate:this.floorDetail.createdDate,
-        updateDate: this.floorDetail.updateDate
+        id:this.doorDetail.id,
+        doorName: this.doorDetail.doorName,
+        floorName:this.doorDetail.floorName,
+        range: this.doorDetail.range,
+        companyName:this.doorDetail.companyName,
+        endPointName:this.doorDetail.endPointName,
+        createdDate:this.doorDetail.createdDate,
+        updateDate: this.doorDetail.updateDate
       });
       this.dataSource.filter="";
     }else {
@@ -146,16 +146,18 @@ console.log("data received :: " + row_obj.id + "  name " + row_obj.buildingName.
 }
 
 
-updateRowData(row_obj:FloorDetail){
+updateRowData(row_obj:DoorDetail){
 
-  this.floorService.addUpdateFloor(row_obj).subscribe(data => {
+  this.doorService.addUpdateDoor(row_obj).subscribe(data => {
     if(data !== null) {
-      this.floorDetail = data;
+      this.doorDetail = data;
       this.dataSource.data = this.dataSource.data.filter((value,key)=>{
-        if(value.id == this.floorDetail.id){
-          value.buildingName = this.floorDetail.buildingName,
-          value.floorName = this.floorDetail.floorName,
-          value.floor = this.floorDetail.floor
+        if(value.id == this.doorDetail.id){
+          value.doorName= this.doorDetail.doorName,
+          value.floorName=this.doorDetail.floorName,
+          value.range= this.doorDetail.range,
+          value.companyName=this.doorDetail.companyName,
+          value.endPointName=this.doorDetail.endPointName
         }
         return true;
       });
@@ -171,16 +173,18 @@ updateRowData(row_obj:FloorDetail){
    });
  
 }
-deleteRowData(row_obj:FloorDetail){
+deleteRowData(row_obj:DoorDetail){
 
-  this.floorService.deleteFloor(row_obj).subscribe(data => {
+  this.doorService.deleteDoor(row_obj).subscribe(data => {
     if(data !== null) {
-      this.floorDetail = data;
+      this.doorDetail = data;
       this.dataSource.data = this.dataSource.data.filter((value,key)=>{
-        if(value.id == this.floorDetail.id){
-          value.buildingName = this.floorDetail.buildingName,
-          value.floorName = this.floorDetail.floorName,
-          value.floor = this.floorDetail.floor
+        if(value.id == this.doorDetail.id){
+          value.doorName= this.doorDetail.doorName,
+          value.floorName=this.doorDetail.floorName,
+          value.range= this.doorDetail.range,
+          value.companyName=this.doorDetail.companyName,
+          value.endPointName=this.doorDetail.endPointName
         }
         return true;
       });
@@ -203,16 +207,16 @@ deleteRowData(row_obj:FloorDetail){
 }
 
 @Component({
-  selector: 'floor-dialog-component',
-  templateUrl: './floor-dialog.component.html',
+  selector: 'door-dialog-component',
+  templateUrl: './door-dialog.component.html',
 })
-export class FloorDialogComponent {
+export class DoorDialogComponent {
   action?:string;
   local_data:any;
   constructor(
-    public dialogRef: MatDialogRef<FloorDialogComponent>,
-    @Optional() @Inject(MAT_DIALOG_DATA) public data: FloorDetail) {
-      console.log("data inside dialog :: " + data.buildingName);
+    public dialogRef: MatDialogRef<DoorDialogComponent>,
+    @Optional() @Inject(MAT_DIALOG_DATA) public data: DoorDetail) {
+      console.log("data inside dialog :: " + data.floorName);
   this.local_data = {...data};
 
   this.action = this.local_data.action;

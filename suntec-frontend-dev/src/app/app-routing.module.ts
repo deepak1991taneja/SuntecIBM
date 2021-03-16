@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AppSettingComponent } from './components/app-setting/app-setting.component';
 import { BuildingManagementComponent } from './components/app-setting/building-management/building-management.component';
+import { CompanyManagementComponent } from './components/app-setting/company-management/company-management.component';
+import { DoorManagementComponent } from './components/app-setting/door-management/door-management.component';
 import { FloorManagementComponent } from './components/app-setting/floor-management/floor-management.component';
 import { FrTabletComponent } from './components/app-setting/fr-tablet/fr-tablet.component';
 import { SettingDashboardComponent } from './components/app-setting/setting-dashboard/setting-dashboard.component';
@@ -61,6 +63,15 @@ const routes: Routes = [
 {
   path:'fr-tablet' , 
   component:FrTabletComponent
+},
+{
+  path:'door-management' , 
+  component:DoorManagementComponent
+},
+{
+  path:'company-management' , 
+  component:CompanyManagementComponent
+
 }
   ]
  },
