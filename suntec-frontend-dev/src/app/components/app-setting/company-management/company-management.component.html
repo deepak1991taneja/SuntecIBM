@@ -1,5 +1,5 @@
 <mat-card>
-    <a  routerLink="."><mat-icon>home</mat-icon></a><span>/ </span><a routerLink="."><span class="span-header">Floor Management</span></a> </mat-card>
+    <a  routerLink="."><mat-icon>home</mat-icon></a><span>/ </span><a routerLink="."><span class="span-header">Company Management</span></a> </mat-card>
     <mat-divider></mat-divider>
     <mat-divider></mat-divider>
     <mat-divider></mat-divider>
@@ -7,7 +7,7 @@
       <mat-divider></mat-divider>
       <mat-divider></mat-divider>
       <mat-card-header> 
-        <h1>Floor Detail</h1>
+        <h1>Company Detail</h1>
         <div class="flex-item" 
         fxFlex fxLayoutAlign="end center">
         
@@ -43,29 +43,35 @@
                <td mat-cell *matCellDef="let element; let i = index">{{i + 1}}</td>
              </ng-container>
                       
-             <ng-container matColumnDef="doorName">
-               <th mat-header-cell *matHeaderCellDef mat-sort-header> Door Name </th>
-               <td mat-cell *matCellDef="let element"> {{element.doorName}} </td>
+             <ng-container matColumnDef="companyName">
+               <th mat-header-cell *matHeaderCellDef mat-sort-header> Company Name </th>
+               <td mat-cell *matCellDef="let element"> {{element.companyName}}  </td>
              </ng-container>
 
-             <ng-container matColumnDef="range">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Range </th>
-                <td mat-cell *matCellDef="let element"> {{element.range}} </td>
+             <ng-container matColumnDef="floor">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Floor </th>
+                <td mat-cell *matCellDef="let element"> 
+                  <mat-list role="list">
+                    <ng-container *ngFor="let floor of element.floor">
+                      <mat-list-item role="listitem"><mat-icon class="list-icon" >fiber_manual_record</mat-icon>{{floor}} </mat-list-item>
+              </ng-container> 
+            </mat-list>
+            </td>
               </ng-container>
 
-              <ng-container matColumnDef="floorName">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Floor Name </th>
-                <td mat-cell *matCellDef="let element"> {{element.floorName.floorName}} </td>
+              <ng-container matColumnDef="contactPerson">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Contact Person </th>
+                <td mat-cell *matCellDef="let element"> {{element.contactPerson}} </td>
               </ng-container>
 
-              <ng-container matColumnDef="companyName">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Company Name</th>
-                <td mat-cell *matCellDef="let element"> {{element.companyName}} </td>
+              <ng-container matColumnDef="unitNumber">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Unit Number </th>
+                <td mat-cell *matCellDef="let element"> {{element.unitNumber}} </td>
               </ng-container>
 
-              <ng-container matColumnDef="endPointName">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Endpoint Name </th>
-                <td mat-cell *matCellDef="let element"> {{element.endPointName}} </td>
+              <ng-container matColumnDef="contactNumber">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Contact Number </th>
+                <td mat-cell *matCellDef="let element"> {{element.contactNumber}} </td>
               </ng-container>
 
               <!-- Action Column -->

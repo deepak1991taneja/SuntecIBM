@@ -46,6 +46,7 @@ import { AccountDialogComponent, SettingDashboardComponent } from './components/
 import { BuildingDialogComponent, BuildingManagementComponent } from './components/app-setting/building-management/building-management.component';
 import { FloorDialogComponent, FloorManagementComponent } from './components/app-setting/floor-management/floor-management.component';
 import { DoorDialogComponent, DoorManagementComponent } from './components/app-setting/door-management/door-management.component';
+import { CompanyDialogComponent, CompanyManagementComponent } from './components/app-setting/company-management/company-management.component';
 @NgModule({
   declarations: [ 
     AppComponent,
@@ -64,7 +65,9 @@ import { DoorDialogComponent, DoorManagementComponent } from './components/app-s
     FloorManagementComponent,
     FloorDialogComponent,
     DoorManagementComponent,
-    DoorDialogComponent
+    DoorDialogComponent,
+    CompanyManagementComponent,
+    CompanyDialogComponent
   ],
   imports: [
     BrowserModule,

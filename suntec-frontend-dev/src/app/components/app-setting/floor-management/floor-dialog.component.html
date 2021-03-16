@@ -1,6 +1,6 @@
 <!-- dialog-box.component.html -->
 <h1 mat-dialog-title><strong>{{action}}</strong> - Floor Data</h1>
-<div mat-dialog-content *ngIf="action != 'Delete'; else elseTemplate"> 
+<div fxLayout="column" fxLayoutAlign="center" mat-dialog-content *ngIf="action != 'Delete'; else elseTemplate"> 
   <mat-form-field appearance="fill">
     <mat-label>select Building</mat-label>
     <mat-select [(ngModel)]="local_data.buildingName" >
