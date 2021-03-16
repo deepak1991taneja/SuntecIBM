@@ -1,0 +1,54 @@
+table {
+    height: auto;
+    width: 100%;
+  }
+  th{
+    font-size: 17px ;
+    font-weight: bold;
+    background-color:#ffffff
+  }
+  td{
+    font-size: 15px;
+  //text-align: center;
+  }
+  .tableDiv{
+    margin-top: 5rem;
+    margin-left: 2rem;
+    margin-right: 2rem;
+  }
+  .labelDiv{
+    margin-top: 10px;
+    margin-left: 10px;
+   }
+   label{
+    font-size: 25px;
+    color:rgb(104, 102, 101);
+   }
+   .mat-form-field {
+    font-size: 18px;
+    width: 100%;
+  }
+
+  a {
+    color: black;
+  }
+
+  .example-card{
+    margin: 2rem;
+  }
+
+  .table-button{
+    margin: 1rem;
+  }
+
+  ::ng-deep .mat-menu-panel{
+    margin-left: 0rem !important;
+    margin-top:0rem !important;
+  }
+  
+  .span-header{
+    font-size: 150% ;
+  }
+  h1{
+    margin-top: 1.5rem;
+  }
