@@ -8,6 +8,7 @@ import { FloorManagementComponent } from './components/app-setting/floor-managem
 import { FrTabletComponent } from './components/app-setting/fr-tablet/fr-tablet.component';
 import { SettingDashboardComponent } from './components/app-setting/setting-dashboard/setting-dashboard.component';
 import { AcsServerSettingComponent } from './components/app-setting/setting-management/acs-server-setting/acs-server-setting.component';
+import { SmtpSettingComponent } from './components/app-setting/setting-management/smtp-setting/smtp-setting.component';
 import { AddPersonComponent } from './components/dashboard/add-person/add-person.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { LoginComponent } from './components/login/login.component';
@@ -78,6 +79,9 @@ const routes: Routes = [
   path:'acs-server' , 
   component:AcsServerSettingComponent
 
+},{
+  path:'smtp-setting' , 
+  component:SmtpSettingComponent
 }
   ]
  },

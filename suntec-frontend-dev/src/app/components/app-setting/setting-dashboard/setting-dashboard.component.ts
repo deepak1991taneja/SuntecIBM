@@ -7,6 +7,7 @@ import { AccountDetail } from 'src/app/shared/model/account-model/account-detail
 import { AccountServiceService } from 'src/app/shared/services/account-service/account-service.service';
 import { TableUtil } from '../table-utils';
 import { DatePipe } from '@angular/common';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 @Component({
@@ -31,7 +32,7 @@ export class SettingDashboardComponent implements OnInit {
   
 
 
-  constructor(public dialog: MatDialog, private accountService: AccountServiceService) {
+  constructor(public dialog: MatDialog, private accountService: AccountServiceService,private _snackBar: MatSnackBar) {
     this.dataSource = new MatTableDataSource<AccountDetail>();
    }
 
@@ -104,7 +105,11 @@ exportArray() {
       }else if(result.event == 'Delete'){
         this.deleteRowData(result.data);
       }
+      this._snackBar.open("sucessfully "+ result.event + " !!", "Thanks", {
+        duration: 1000,
+      });
           });
+          
   }
 
   addRowData(row_obj:AccountDetail){

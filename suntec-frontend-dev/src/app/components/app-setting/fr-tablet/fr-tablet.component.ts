@@ -11,6 +11,7 @@ import { FrTabletDetail } from 'src/app/shared/model/frTablet-model/fr-tablet-de
 import { FrTabletServiceService } from 'src/app/shared/services/frTablet-service/fr-tablet-service.service';
 import { FloorDetail } from 'src/app/shared/model/floor-model/floor-detail.model';
 import { FloorServiceService } from 'src/app/shared/services/floor-service/floor-service.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-fr-tablet',
@@ -33,7 +34,7 @@ export class FrTabletComponent implements OnInit {
   @ViewChild(MatSort)
   sort!: MatSort;
 
-    constructor(public dialog: MatDialog, private frTabletService: FrTabletServiceService,private floorService: FloorServiceService,) {
+    constructor(public dialog: MatDialog, private frTabletService: FrTabletServiceService,private floorService: FloorServiceService,private _snackBar: MatSnackBar) {
     this.dataSource = new MatTableDataSource<FrTabletDetail>();
    }
 
@@ -110,6 +111,9 @@ openDialog(action:String,obj:any){
     }else if(result.event == 'Delete'){
       this.deleteRowData(result.data);
     }
+    this._snackBar.open("sucessfully "+ result.event + " !!", "Thanks", {
+      duration: 1000,
+    });
         });
 }
 

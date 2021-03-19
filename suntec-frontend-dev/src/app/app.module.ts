@@ -54,6 +54,7 @@ import { DoorDialogComponent, DoorManagementComponent } from './components/app-s
 import { CompanyDialogComponent, CompanyManagementComponent} from './components/app-setting/company-management/company-management.component';
 import { SettingSnakbarComponent } from './components/app-setting/setting-snakbar/setting-snakbar.component';
 import { AcsServerSettingComponent } from './components/app-setting/setting-management/acs-server-setting/acs-server-setting.component';
+import { SmtpSettingComponent } from './components/app-setting/setting-management/smtp-setting/smtp-setting.component';
 @NgModule({
   declarations: [ 
     AppComponent,
@@ -78,7 +79,8 @@ import { AcsServerSettingComponent } from './components/app-setting/setting-mana
     CompanyManagementComponent,
     CompanyDialogComponent,
     SettingSnakbarComponent,
-    AcsServerSettingComponent
+    AcsServerSettingComponent,
+    SmtpSettingComponent
   ],
   imports: [
     BrowserModule,
