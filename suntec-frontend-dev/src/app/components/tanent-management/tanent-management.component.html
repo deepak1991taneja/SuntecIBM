@@ -1,0 +1,47 @@
+
+  
+<p  class="example-header" >
+    <mat-toolbar color="primary" >
+      <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon"  (click)="sidenav.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <div class="primary-logo">
+        <img  mat-card-avatar src="assets/images/logo-dash.png" style="width: 250px; height: 60px;" class="om-logo">
+      </div>
+      
+      <span class="example-spacer"></span>
+      
+<button mat-fab [matMenuTriggerFor]="logout" color="primary" ><mat-icon>account_circle</mat-icon></button>
+<mat-menu #logout="matMenu" xPosition="after" class="menu-without-scroll">
+  <button mat-menu-item [routerLink]="''"><mat-icon>exit_to_app</mat-icon>Logout</button>
+</mat-menu>
+     
+    </mat-toolbar>
+</p>
+  <mat-sidenav-container class="example-container">
+   
+    <mat-sidenav #sidenav mode="side" opened class="example-sidenav"
+                 [fixedInViewport]="options.value.fixed" [fixedTopGap]="options.value.top"
+                 [fixedBottomGap]="options.value.bottom">
+                 <mat-nav-list>
+                    <!-- <a mat-list-item routerLink="." *ngFor="let nav of fillerNav">{{nav}}</a> -->
+                    <a mat-list-item routerLink="/tanent" class="nav-anchor"><mat-icon>manage_accounts</mat-icon> <span class="nav-caption">Tanent Dashboard </span></a>
+                    <mat-divider></mat-divider>
+                    <a mat-list-item routerLink="/app-setting/building-management" class="nav-anchor"><mat-icon>business</mat-icon> <span class="nav-caption"> Add Staff  </span></a>
+                    <mat-divider></mat-divider>
+                    <a mat-list-item routerLink="/app-setting/floor-management" class="nav-anchor"><mat-icon>apartment</mat-icon> <span class="nav-caption">Update Staff</span></a>
+                    <mat-divider></mat-divider>
+                    <a mat-list-item routerLink="/app-setting/door-management" class="nav-anchor"><mat-icon>sensor_door</mat-icon> <span class="nav-caption">Delete Staff</span></a>
+                    <mat-divider></mat-divider>
+                    <a mat-list-item routerLink="/app-setting/company-management" class="nav-anchor"><mat-icon>supervisor_account</mat-icon> <span class="nav-caption">Option 1</span></a>
+                    <mat-divider></mat-divider>
+                    <a mat-list-item routerLink="/app-setting/fr-tablet" class="nav-anchor"><mat-icon>tablet</mat-icon> <span class="nav-caption">Option 2</span></a>
+                      <mat-divider></mat-divider>
+                    </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content >
+      <router-outlet></router-outlet> 
+      </mat-sidenav-content>
+    </mat-sidenav-container>
+   
+

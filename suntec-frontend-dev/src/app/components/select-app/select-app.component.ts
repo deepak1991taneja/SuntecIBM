@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-select-app',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SelectAppComponent implements OnInit {
 
-  constructor() { 
+  constructor(private router: Router) { 
    
   }
   
@@ -28,7 +29,7 @@ export class SelectAppComponent implements OnInit {
     this.titleSelected = title;
     console.log(title.name);
     if(title.name==="TMS"){
-console.log("tms");
+    this.router.navigate(['/tanent'])
     }else if(title.name==="VMS"){
 console.log("vms");
     }

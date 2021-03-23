@@ -1,0 +1,94 @@
+<!-- dialog-box.component.html -->
+<h1 mat-dialog-title><strong>{{action}}</strong> - User Data</h1>
+<div  mat-dialog-content *ngIf="action != 'Delete'; else elseTemplate"> 
+  <div fxLayout="row" fxLayoutAlign="space-evenly center" >
+  <mat-form-field>
+    <input placeholder="{{action}} Staff Name" matInput [(ngModel)]="local_data.name">
+  </mat-form-field>
+  
+  <mat-form-field>
+    <input placeholder="{{action}} Email" matInput [(ngModel)]="local_data.email">
+  </mat-form-field>
+</div>
+<div fxLayout="row" fxLayoutAlign="space-evenly center">
+  <mat-form-field>
+    <input type="password" placeholder="{{action}} Password" matInput [(ngModel)]="local_data.password">
+  </mat-form-field>
+
+  <mat-form-field>
+    <input placeholder="{{action}} Job Location" matInput [(ngModel)]="local_data.jobLocation">
+  </mat-form-field>
+</div>
+<div fxLayout="row" fxLayoutAlign="space-evenly center">
+  <mat-form-field>
+    <input placeholder="{{action}} Door" matInput [(ngModel)]="local_data.door">
+  </mat-form-field>
+
+  <mat-form-field>
+    <input placeholder="{{action}} Phone" matInput [(ngModel)]="local_data.phone">
+  </mat-form-field>
+</div>
+<div fxLayout="row" fxLayoutAlign="space-evenly center">
+  <mat-form-field>
+    <input placeholder="{{action}} Job position" matInput [(ngModel)]="local_data.jobPosition">
+  </mat-form-field>
+
+  <mat-form-field>
+    <input placeholder="{{action}} Company" matInput [(ngModel)]="local_data.company">
+  </mat-form-field>
+</div>
+<div fxLayout="row" fxLayoutAlign="space-evenly center">
+  <mat-form-field>
+    <input placeholder="{{action}} Unit" matInput [(ngModel)]="local_data.unit">
+  </mat-form-field>
+
+  <mat-form-field>
+    <input placeholder="{{action}} NRIC" matInput [(ngModel)]="local_data.nric">
+  </mat-form-field>
+</div>
+
+<div fxLayout="row" fxLayoutAlign="space-evenly center">
+  <mat-form-field >
+    <input placeholder="{{action}} Activation Date" matInput [matDatepicker]="picker1" [(ngModel)]="local_data.activationDate" required>
+    <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+    <mat-datepicker #picker1></mat-datepicker>
+  </mat-form-field>
+
+  <mat-form-field >
+    <input placeholder="{{action}} Expiration Date" matInput [matDatepicker]="picker2" [(ngModel)]="local_data.expirationDate" required>
+    <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+    <mat-datepicker #picker2></mat-datepicker>
+  </mat-form-field>
+</div>
+
+  <div fxLayout="row" fxLayoutAlign="space-evenly center">
+  <mat-form-field>
+    <input placeholder="{{action}} Remarks" matInput [(ngModel)]="local_data.remarks">
+  </mat-form-field>
+
+  <mat-form-field>
+    <ngx-mat-file-input   (change)="uploadFile($event)" [(ngModel)]="local_data.file"  placeholder="{{action}} photo">
+    </ngx-mat-file-input>
+    <mat-icon matSuffix>attachment</mat-icon>
+   
+  </mat-form-field>
+  </div>
+
+    <mat-checkbox [(ngModel)]="local_data.validateTC"   color="primary">I concent to building's terms and conditions</mat-checkbox>
+
+   
+    <mat-checkbox [(ngModel)]="local_data.validateQRCode"  color="primary">I want to use Suntec QR Code mobile application.</mat-checkbox>
+ 
+
+
+
+  
+
+</div>
+<ng-template #elseTemplate>
+    Sure to delete <b>{{local_data.name}}</b>?
+  </ng-template>
+<div mat-dialog-actions>
+  <button mat-flat-button color="primary"  (click)="doAction()">{{action}}</button>
+  <button mat-button (click)="closeDialog()" mat-flat-button color="warn">Cancel</button>
+</div>

@@ -15,5 +15,5 @@ export class Users {
     remarks!:String;  
     validateTC!:boolean
     validateQRCode!:boolean
-    file!:Blob
+    file!:File
 }

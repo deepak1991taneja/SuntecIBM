@@ -14,6 +14,8 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { LoginComponent } from './components/login/login.component';
 import { NevigationComponent } from './components/navigation/nevigation.component';
 import { SelectAppComponent } from './components/select-app/select-app.component';
+import { TanentDashboardComponent } from './components/tanent-management/tanent-dashboard/tanent-dashboard.component';
+import { TanentManagementComponent } from './components/tanent-management/tanent-management.component';
 
 
 const routes: Routes = [
@@ -86,6 +88,24 @@ const routes: Routes = [
   ]
  },
   
+//// tms login
+  {path:'tanent' ,
+  component:TanentManagementComponent,
+  children: [
+   {
+     path: '',
+     pathMatch: 'full',
+     redirectTo: 'dashboard',
+   },
+   {
+     path:'dashboard' , 
+     component:TanentDashboardComponent
+ },
+ 
+  ]
+ },
+
+
 ];
 
 @NgModule({

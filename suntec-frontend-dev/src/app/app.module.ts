@@ -55,6 +55,8 @@ import { CompanyDialogComponent, CompanyManagementComponent} from './components/
 import { SettingSnakbarComponent } from './components/app-setting/setting-snakbar/setting-snakbar.component';
 import { AcsServerSettingComponent } from './components/app-setting/setting-management/acs-server-setting/acs-server-setting.component';
 import { SmtpSettingComponent } from './components/app-setting/setting-management/smtp-setting/smtp-setting.component';
+import { TanentManagementComponent } from './components/tanent-management/tanent-management.component';
+import { DashboardDialogComponent, TanentDashboardComponent } from './components/tanent-management/tanent-dashboard/tanent-dashboard.component';
 @NgModule({
   declarations: [ 
     AppComponent,
@@ -80,7 +82,10 @@ import { SmtpSettingComponent } from './components/app-setting/setting-managemen
     CompanyDialogComponent,
     SettingSnakbarComponent,
     AcsServerSettingComponent,
-    SmtpSettingComponent
+    SmtpSettingComponent,
+    TanentManagementComponent,
+    TanentDashboardComponent,
+    DashboardDialogComponent
   ],
   imports: [
     BrowserModule,

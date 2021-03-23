@@ -1,5 +1,4 @@
 
-    
     <mat-card ><a  routerLink="."><mat-icon>home</mat-icon></a><span>/ </span><a routerLink="."><span class="span-header">Account Management</span></a> </mat-card>
     <mat-divider></mat-divider>
     <mat-divider></mat-divider>
@@ -10,7 +9,7 @@
       <mat-card-header> 
         <h1>Account Detail</h1>
         <div class="flex-item" 
-        fxFlex fxLayoutAlign="end start">
+        fxFlex fxLayoutAlign="end center">
         
         <button mat-mini-fab  color="primary" class="table-button" [matMenuTriggerFor]="download" ><mat-icon>file_download</mat-icon></button>
         <mat-menu #download="matMenu" xPosition="after" class="menu-without-scroll">
@@ -28,12 +27,15 @@
           <button mat-menu-item [routerLink]="''"><mat-icon>picture_as_pdf</mat-icon>Option-3</button>
         </mat-menu>
    </div></mat-card-header>
+   <mat-divider></mat-divider>
+   <mat-divider></mat-divider>
+   <mat-divider></mat-divider>
       <mat-card-content>
         <div class="mat-elevation-z8 tableDiv">
-          <mat-form-field>
-       <mat-label>Filter</mat-label>
-       <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
-     </mat-form-field>
+          <mat-form-field  [style.width.rem]=25 [style.padding-left.rem]=2>
+            <mat-label>Filter</mat-label>
+            <input autocomplete="off" matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
+          </mat-form-field>
      <table id="ExampleMaterialTable" matTableExporter mat-table [dataSource]="dataSource" #exporter="matTableExporter"  [hiddenColumns]="[2]">
                      
              <ng-container matColumnDef="Position">

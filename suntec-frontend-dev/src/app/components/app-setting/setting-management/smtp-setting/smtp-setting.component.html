@@ -15,16 +15,12 @@
  <mat-divider></mat-divider>
  <mat-card-content>
 
-    <div fxLayout="row">
-        <mat-slide-toggle color="primary" [(ngModel)]="smtpData.mailServerEnable" >Mail Server Enable</mat-slide-toggle>
-</div>
+   
     <div fxLayout="row">
     <mat-form-field class="form-element">
         <mat-label>Host</mat-label>
         <input matInput placeholder="Add Host" [(ngModel)]="smtpData.host" autocomplete="off">
       </mat-form-field>
-    </div>
-    <div fxLayout="row">
       <mat-form-field  class="form-element">
         <mat-label>Port</mat-label>
         <input matInput placeholder="Add Port" [(ngModel)]="smtpData.port" autocomplete="off">
@@ -35,12 +31,14 @@
         <mat-label>Email Account</mat-label>
         <input matInput placeholder="Add Email Account" [(ngModel)]="smtpData.email" autocomplete="off">
       </mat-form-field>
-</div>
-<div fxLayout="row">
       <mat-form-field  class="form-element">
         <mat-label>Password</mat-label>
         <input matInput type="password" placeholder="Add Password" [(ngModel)]="smtpData.password" autocomplete="off">
       </mat-form-field>
+</div>
+
+<div fxLayout="row">
+  <mat-slide-toggle color="primary" [(ngModel)]="smtpData.mailServerEnable" >Mail Server Enable</mat-slide-toggle>
 </div>
 
  </mat-card-content>
