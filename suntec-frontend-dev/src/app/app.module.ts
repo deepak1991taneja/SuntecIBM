@@ -25,6 +25,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { MatTableExporterModule } from 'mat-table-exporter';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 import 'hammerjs';
 import { LoginComponent } from './components/login/login.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
@@ -41,6 +42,7 @@ import {MatRadioModule} from '@angular/material/radio';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule, MatRippleModule} from '@angular/material/core';
 import { MaterialFileInputModule } from 'ngx-material-file-input';
+import {MatStepperModule} from '@angular/material/stepper';
 import { SelectAppComponent } from './components/select-app/select-app.component';
 import { MaterialElevationDirective } from './components/select-app/material-elevation.directive';
 import { AppSettingComponent } from './components/app-setting/app-setting.component';
@@ -123,7 +125,9 @@ import { DashboardDialogComponent, TanentDashboardComponent } from './components
     MatDialogModule,
     MatTableExporterModule,
     MatSnackBarModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    MatProgressBarModule,
+    MatStepperModule
   ],
   providers: [],
   bootstrap: [AppComponent]

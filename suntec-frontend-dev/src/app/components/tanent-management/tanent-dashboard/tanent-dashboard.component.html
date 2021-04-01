@@ -30,15 +30,79 @@
    <mat-divider></mat-divider>
    <mat-divider></mat-divider>
       <mat-card-content>
+        <!-- <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%">
+          <div fxFlex="25%">
+              Progress: {{loaded}}%
+              <mat-progress-bar mode="determinate" value="{{loaded}}"></mat-progress-bar>
+              
+                    <input #fileInput type="file" (change)="selectFile($event)" style="display:none;" accept=".xls,.xlsx, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel" ngModel/>
+                    <mat-form-field class="example-full-width" (click)="fileInput.click()">
+                      <input matInput placeholder="Choose File" value="{{fileInput.value.substr(fileInput.value.lastIndexOf('\\')+1)}}">
+                      <mat-icon matSuffix>upload_file</mat-icon>
+                    </mat-form-field>
+                    &nbsp;
+                    <button class="upload-file" mat-raised-button color="primary" (click)="upload()">Upload</button>
+            </div>
+          </div> -->
+<!--  Stepper design-->
+<mat-horizontal-stepper #stepper>
+  <mat-step [stepControl]="firstFormGroup" errorMessage="file is required.">
+    <form [formGroup]="firstFormGroup">
+      <ng-template matStepLabel>Upload Excel</ng-template>
+      <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="2rem">
+        <div fxFlex="25%">
+                  <input #fileInputStep1 type="file" onclick="this.value=null" (change)="selectFileStep1($event)" style="display:none;" accept=".xls,.xlsx, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel"  />
+                  <mat-form-field class="example-full-width" (click)="fileInputStep1.click()" >
+                    <input matInput placeholder="Choose File" formControlName="firstCtrl" required value="{{fileInputStep1.value.substr(fileInputStep1.value.lastIndexOf('\\')+1)}}">
+                    <mat-icon matSuffix>upload_file</mat-icon>
+                  </mat-form-field>
+          </div>
+          <div  fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px" >
+            <button mat-raised-button color="primary" matStepperNext>Next</button>
+          </div>
+        </div>
+     
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="secondFormGroup" errorMessage="image directory is required.">
+    <form [formGroup]="secondFormGroup">
+      <ng-template matStepLabel>Select images directory</ng-template>
+      <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%">
+        <div fxFlex="25%">
+                  <input #fileInputStep2 type="file" onclick="this.value=null" (change)="selectDirectoryStep2($event)" style="display:none;" webkitdirectory  />
+                  <mat-form-field class="example-full-width" (click)="fileInputStep2.click()" >
+                    <input matInput placeholder="Choose image directory" formControlName="secondCtrl" required value="{{fileInputStep2.value.substr(fileInputStep2.value.lastIndexOf('\\')+1)}}">
+                    <mat-icon matSuffix>folder</mat-icon>
+                  </mat-form-field>
+          </div>
+          <div  fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px" >
+            <button mat-raised-button color="primary" matStepperPrevious>Back</button>
+            <button mat-raised-button color="primary" matStepperNext>Next</button>
+          </div>
+        </div>
+
+      
+    </form>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Done</ng-template>
+    <p>You are now done.</p>
+    <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px">
+      <button mat-raised-button color="primary" matStepperPrevious>Back</button>
+      <button mat-raised-button color="primary" (click)="uploadStepper()">confirm & Upload</button>
+      <button mat-raised-button color="primary" (click)="stepper.reset()">Reset</button>
+    </div>
+  </mat-step>
+</mat-horizontal-stepper>
+<!-- End Here-->
+
         <div class="mat-elevation-z8 tableDiv">
-          <mat-form-field  [style.width.rem]=25 [style.padding-left.rem]=2>
+          <mat-form-field  [style.width.rem]=25 [style.padding-left.rem]=2 >
        <mat-label>Filter</mat-label>
        <input autocomplete="off" matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
      </mat-form-field> 
     
    <table mat-table [dataSource]="dataSource"  class="mat-elevation-z8">
-  
-     
               <ng-container matColumnDef="id">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> No. </th>
                 <td mat-cell *matCellDef="let element; let i = index">{{i + 1}}</td>
@@ -46,7 +110,7 @@
       
         <ng-container matColumnDef="file">
           <th mat-header-cell *matHeaderCellDef> Image </th>
-          <td mat-cell *matCellDef="let users"> <img   alt="Avatar" style="width:50px; height: 50px; border-radius: 50%;" src="data:image/png;base64,{{users.file}}"/> </td>
+          <td mat-cell *matCellDef="let users"> <img   alt="Avatar" style="width:50px; height: 50px; border-radius: 50%;"  [src]="'data:image/jpeg;base64,'+ users.file" /> </td>
         </ng-container>
       
         <ng-container matColumnDef="name">

@@ -11,15 +11,15 @@ table {
 background-color: rgb(252, 245, 245);
 }
 .tableDiv{
-  margin-top: 2rem !important;
-  margin-left: 2rem;
-  margin-right: 2rem;
+  margin-top: 0.5rem !important;
+  margin-left: 1rem;
+  margin-right: 1rem;
 }
 mat-card-content{
     padding: 1.5rem;
 }
 .labelDiv{
-  margin-top: 10px;
+  margin-top: 2rem;
   margin-left: 10px;
  }
 
@@ -60,4 +60,26 @@ mat-card-header{
 .form-element {
   padding: 5px 30px 25px 2px;
   width: 100%;
+}
+
+::ng-deep .mat-progress-bar-fill::after {
+  background-color: #1E457C;
+}
+
+::ng-deep .mat-progress-bar-buffer {
+  background: #E4E8EB;
+}
+
+::ng-deep .mat-progress-bar {
+  border-radius: 15px;
+  height: 10px;
+}
+
+.upload-file{
+  padding: 0rem 3rem 0rem 2rem;
+  margin-left: 3rem;
+}
+
+.mat-form-field {
+  margin-top: 16px;
 }
