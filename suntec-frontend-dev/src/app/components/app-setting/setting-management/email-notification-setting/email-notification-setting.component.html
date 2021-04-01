@@ -1,0 +1,44 @@
+<mat-card>
+    <a  routerLink="."><mat-icon>home</mat-icon></a><span>/ </span><a  routerLink="."><span class="span-header">Settings</span></a><span>/ </span><a routerLink="."><span class="span-header">Email Notifiction </span></a> 
+</mat-card>
+<mat-divider></mat-divider>
+<mat-divider></mat-divider>
+<mat-card class="example-card">
+    <mat-divider></mat-divider>
+    <mat-divider></mat-divider>
+    <mat-divider></mat-divider>
+    <mat-card-header> 
+      <h1>Email Notification</h1>
+  </mat-card-header>
+ <mat-divider></mat-divider>
+ <mat-divider></mat-divider>
+ <mat-divider></mat-divider>
+ <mat-card-content>
+
+   
+ 
+<div fxLayout="row">
+    <mat-form-field  class="form-element">
+        <mat-label>Email <Address></Address></mat-label>
+        <input matInput placeholder="Add Email Account" [(ngModel)]="emailNotificationData.email" autocomplete="off">
+      </mat-form-field>
+      <mat-form-field  class="form-element">
+        <mat-label>Password</mat-label>
+        <input matInput type="password" placeholder="Add Password" [(ngModel)]="emailNotificationData.password" autocomplete="off">
+      </mat-form-field>
+</div>
+
+<div fxLayout="row">
+  <mat-slide-toggle color="primary" [(ngModel)]="emailNotificationData.emailNotificationEnable" >E-mail Notifiction Enable</mat-slide-toggle>
+</div>
+
+ </mat-card-content>
+ 
+ <mat-card-header> 
+    <div fxFlex fxLayoutAlign="end center" class="flex-item" >
+        <button mat-raised-button color="primary" (click)="SaveEmailNotificationData()">Save</button>
+        <button mat-raised-button color="warn" (click)="ResetEmailNotificationData()">Reset</button>
+        </div>
+</mat-card-header>
+
+</mat-card>

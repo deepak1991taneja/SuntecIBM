@@ -12,6 +12,7 @@ import { FrTabletServiceService } from 'src/app/shared/services/frTablet-service
 import { FloorDetail } from 'src/app/shared/model/floor-model/floor-detail.model';
 import { FloorServiceService } from 'src/app/shared/services/floor-service/floor-service.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { AbstractControl, FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-fr-tablet',
@@ -29,13 +30,40 @@ export class FrTabletComponent implements OnInit {
   exporter:any;
 
   displayedColumns: string[] = ['No', 'Floor', 'Name', 'Protocol','IP','Port','Account','Action'];
+  formGroup!: FormGroup;
+  readonly formControl!: AbstractControl;
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
   @ViewChild(MatSort)
   sort!: MatSort;
 
-    constructor(public dialog: MatDialog, private frTabletService: FrTabletServiceService,private floorService: FloorServiceService,private _snackBar: MatSnackBar) {
+    constructor(public dialog: MatDialog, private frTabletService: FrTabletServiceService,private floorService: FloorServiceService,private _snackBar: MatSnackBar,formBuilder: FormBuilder) {
     this.dataSource = new MatTableDataSource<FrTabletDetail>();
+    this.dataSource.filterPredicate = ((data, filter) => {
+      const a = !filter.id || data.id === filter.id;
+      const b = !filter.name || data.name.toLowerCase().includes(filter.name);
+      const c = !filter.floorName || data.floorName.floorName.toLowerCase().includes(filter.floorName);
+      const d = !filter.protocol || data.protocol.toLowerCase().includes(filter.protocol);
+      const e = !filter.ip || data.ip.toLowerCase().includes(filter.ip);
+      const f = !filter.port || data.port.toLowerCase().includes(filter.port);
+      const g = !filter.account || data.account.toLowerCase().includes(filter.account);
+      return a && b && c && d && e && f && g;
+    }) as (frTabletData: any, string: any) => boolean;
+
+    this.formGroup = formBuilder.group({
+      name: '',
+      id: '',
+      floorName: '',
+      protocol: '',
+      ip: '',
+      port: '',
+      account: '',
+    })
+    this.formGroup.valueChanges.subscribe(value => {
+      const filter = {...value, name: value.name.trim().toLowerCase(),floorName: value.floorName.trim().toLowerCase(),protocol: value.protocol.trim().toLowerCase(),
+        ip: value.ip.trim().toLowerCase(),port: value.port.trim().toLowerCase(),account: value.account.trim().toLowerCase()} as string;
+      this.dataSource.filter = filter;
+    });
    }
 
    ngOnInit(): void {
@@ -53,13 +81,13 @@ export class FrTabletComponent implements OnInit {
   this.dataSource.paginator = this.paginator;
 }
 
-applyFilter(event: Event) {
-  const filterValue = (event.target as HTMLInputElement).value;
-  this.dataSource.filter = filterValue.trim().toLowerCase();
-  if (this.dataSource.paginator) {
-    this.dataSource.paginator.firstPage();
-  }
-}
+// applyFilter(event: Event) {
+//   const filterValue = (event.target as HTMLInputElement).value;
+//   this.dataSource.filter = filterValue.trim().toLowerCase();
+//   if (this.dataSource.paginator) {
+//     this.dataSource.paginator.firstPage();
+//   }
+// }
 
 setFileName() {
   this.testFileName = 'ExportFrTabletDetail' + '_' +
@@ -122,7 +150,7 @@ addRowData(row_obj:FrTabletDetail){
     this.frTabletService.addUpdateFrTablet(row_obj).subscribe(data => {
       if(data !== null) {
         this.frTabletDetail = data;
-        this.dataSource.data.push({
+        this.dataSource.data.unshift({
           id:this.frTabletDetail.id,
           name:this.frTabletDetail.name,
           protocol:this.frTabletDetail.protocol,

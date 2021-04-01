@@ -1,5 +1,6 @@
 import { DatePipe } from '@angular/common';
 import { Component, Inject, OnInit, Optional, ViewChild } from '@angular/core';
+import { AbstractControl, FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -27,10 +28,36 @@ export class DoorManagementComponent implements OnInit {
   displayedColumns: string[] = ['id', 'doorName','range', 'floorName', 'companyName', 'endPointName', 'Action'];
   //dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
 
+  formGroup!: FormGroup;
+  readonly formControl!: AbstractControl;
   @ViewChild(MatPaginator) paginator: MatPaginator | any;
  
-  constructor(public dialog: MatDialog, private doorService: DoorServiceService, private floorService: FloorServiceService, private _snackBar: MatSnackBar) {
+  constructor(public dialog: MatDialog, private doorService: DoorServiceService, private floorService: FloorServiceService, private _snackBar: MatSnackBar,formBuilder: FormBuilder) {
     this.dataSource = new MatTableDataSource<DoorDetail>();
+    this.dataSource.filterPredicate = ((data, filter) => {
+      const a = !filter.id || data.id === filter.id;
+      const b = !filter.doorName || data.doorName.toLowerCase().includes(filter.doorName);
+      const c = !filter.range || data.range.toLowerCase().includes(filter.range);
+      const d = !filter.floorName || data.floorName.floorName.toLowerCase().includes(filter.floorName);
+      const e = !filter.companyName || data.companyName.toLowerCase().includes(filter.companyName);
+      const f = !filter.endPointName || data.endPointName.toLowerCase().includes(filter.endPointName);
+      return a && b && c && d && e && f;
+    }) as (doorData: any, string: any) => boolean;
+
+    this.formGroup = formBuilder.group({
+      doorName: '',
+      id: '',
+      range: '',
+      floorName: '',
+      companyName: '',
+      endPointName: '',
+    })
+    this.formGroup.valueChanges.subscribe(value => {
+      const filter = {...value, doorName: value.doorName.trim().toLowerCase(),range: value.range.trim().toLowerCase(),
+        floorName: value.floorName.trim().toLowerCase(),companyName: value.companyName.trim().toLowerCase(),
+        endPointName: value.endPointName.trim().toLowerCase()} as string;
+      this.dataSource.filter = filter;
+    });
    }
 
   ngOnInit(): void {
@@ -49,13 +76,13 @@ export class DoorManagementComponent implements OnInit {
     this.dataSource.paginator = this.paginator;
   }
 
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-    if (this.dataSource.paginator) {
-      this.dataSource.paginator.firstPage();
-    }
-  }
+  // applyFilter(event: Event) {
+  //   const filterValue = (event.target as HTMLInputElement).value;
+  //   this.dataSource.filter = filterValue.trim().toLowerCase();
+  //   if (this.dataSource.paginator) {
+  //     this.dataSource.paginator.firstPage();
+  //   }
+  // }
 
   setFileName() {
     this.testFileName = 'ExportResult' + '_' +
@@ -120,7 +147,7 @@ console.log("data received :: " + row_obj.id + "  name " + row_obj.floorName.flo
   this.doorService.addUpdateDoor(row_obj).subscribe(data => {
     if(data !== null) {
       this.doorDetail = data;
-      this.dataSource.data.push({
+      this.dataSource.data.unshift({
         id:this.doorDetail.id,
         doorName: this.doorDetail.doorName,
         floorName:this.doorDetail.floorName,

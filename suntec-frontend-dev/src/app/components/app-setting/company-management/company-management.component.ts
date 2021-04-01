@@ -1,5 +1,6 @@
 import { DatePipe } from '@angular/common';
 import { Component, Inject, OnInit, Optional, ViewChild } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSnackBar, MAT_SNACK_BAR_DATA } from '@angular/material/snack-bar';
@@ -26,14 +27,41 @@ export class CompanyManagementComponent implements OnInit {
   errorMessage!: string;
   testFileName = 'SampleFile';
   exporter:any;
+  formGroup!: FormGroup;
 
   displayedColumns: string[] = ['id', 'companyName', 'floor', 'contactPerson', 'unitNumber', 'contactNumber', 'Action'];
   //dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
 
   @ViewChild(MatPaginator) paginator: MatPaginator | any;
  
-  constructor(public dialog: MatDialog, private floorService: FloorServiceService, private companyService: CompanyServiceService, private _snackBar: MatSnackBar) {
+  constructor(public dialog: MatDialog, private floorService: FloorServiceService, private companyService: CompanyServiceService, private _snackBar: MatSnackBar,formBuilder: FormBuilder) {
     this.dataSource = new MatTableDataSource<CompanyDetail>();
+    this.dataSource.filterPredicate = ((data, filter) => {
+      const a = !filter.id || data.id === filter.id;
+      const b = !filter.companyName || data.companyName.toLowerCase().includes(filter.companyName);
+      const c = !filter.floor || data.floor.floor.toLowerCase().includes(filter.floor);
+      const d = !filter.contactPerson || data.contactPerson.toLowerCase().includes(filter.contactPerson);
+      const e = !filter.unitNumber || data.unitNumber.toLowerCase().includes(filter.unitNumber);
+      const f = !filter.contactNumber || data.contactNumber.toLowerCase().includes(filter.contactNumber);
+      
+     
+      return a && b && c && d && e && f;
+    }) as (companyData: any, string: any) => boolean;
+
+    this.formGroup = formBuilder.group({
+      id:'',
+      companyName: '',
+      floor: '',
+      contactPerson:'',
+      unitNumber:'',
+      contactNumber:'',
+    })
+    this.formGroup.valueChanges.subscribe(value => {
+      const filter = {...value, companyName: value.companyName.trim().toLowerCase(),floor: value.floor.trim().toLowerCase(),
+        contactPerson: value.contactPerson.trim().toLowerCase(),unitNumber: value.unitNumber.trim().toLowerCase(),
+        contactNumber: value.contactNumber.trim().toLowerCase()} as string;
+      this.dataSource.filter = filter;
+    });
    }
 
   ngOnInit(): void {
@@ -54,13 +82,13 @@ export class CompanyManagementComponent implements OnInit {
     this.dataSource.paginator = this.paginator;
   }
 
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-    if (this.dataSource.paginator) {
-      this.dataSource.paginator.firstPage();
-    }
-  }
+  // applyFilter(event: Event) {
+  //   const filterValue = (event.target as HTMLInputElement).value;
+  //   this.dataSource.filter = filterValue.trim().toLowerCase();
+  //   if (this.dataSource.paginator) {
+  //     this.dataSource.paginator.firstPage();
+  //   }
+  // }
 
   setFileName() {
     this.testFileName = 'ExportResult' + '_' +
@@ -133,7 +161,7 @@ console.log("data received :: " + row_obj.id + "  name " + row_obj.companyName)
   this.companyService.addUpdateCompany(row_obj).subscribe(data => {
     if(data !== null) {
       this.companyDetail = data;
-      this.dataSource.data.push({
+      this.dataSource.data.unshift({
         id:this.companyDetail.id,
         companyName:this.companyDetail.companyName,
         floor:this.companyDetail.floor,

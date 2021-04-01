@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { Component, NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AppSettingComponent } from './components/app-setting/app-setting.component';
 import { BuildingManagementComponent } from './components/app-setting/building-management/building-management.component';
@@ -8,6 +8,7 @@ import { FloorManagementComponent } from './components/app-setting/floor-managem
 import { FrTabletComponent } from './components/app-setting/fr-tablet/fr-tablet.component';
 import { SettingDashboardComponent } from './components/app-setting/setting-dashboard/setting-dashboard.component';
 import { AcsServerSettingComponent } from './components/app-setting/setting-management/acs-server-setting/acs-server-setting.component';
+import { EmailNotificationSettingComponent } from './components/app-setting/setting-management/email-notification-setting/email-notification-setting.component';
 import { SmtpSettingComponent } from './components/app-setting/setting-management/smtp-setting/smtp-setting.component';
 import { AddPersonComponent } from './components/dashboard/add-person/add-person.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
@@ -84,6 +85,9 @@ const routes: Routes = [
 },{
   path:'smtp-setting' , 
   component:SmtpSettingComponent
+},{
+  path:'email-notification',
+  component:EmailNotificationSettingComponent
 }
   ]
  },

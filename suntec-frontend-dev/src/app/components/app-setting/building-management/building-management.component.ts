@@ -1,6 +1,7 @@
 import { DatePipe } from '@angular/common';
 import { analyzeAndValidateNgModules } from '@angular/compiler';
 import { Component, Inject, OnInit,Optional,ViewChild } from '@angular/core';
+import { AbstractControl, FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import {MatPaginator} from '@angular/material/paginator';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -23,14 +24,33 @@ export class BuildingManagementComponent implements OnInit {
   errorMessage!: string;
   testFileName = 'SampleFile';
   exporter:any;
+  formGroup!: FormGroup;
 
   displayedColumns: string[] = ['Id', 'Name', 'Action'];
   //dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
 
   @ViewChild(MatPaginator) paginator: MatPaginator | any;
  
-  constructor(public dialog: MatDialog, private buildingService: BuildingServiceService, private _snackBar: MatSnackBar) {
+  readonly formControl!: AbstractControl;
+  constructor(public dialog: MatDialog, private buildingService: BuildingServiceService, private _snackBar: MatSnackBar,formBuilder: FormBuilder) {
     this.dataSource = new MatTableDataSource<BuildingDetail>();
+
+    this.dataSource.filterPredicate = ((data, filter) => {
+      const a = !filter.id || data.id === filter.id;
+      const b = !filter.name || data.name.toLowerCase().includes(filter.name);
+      
+      return a && b;
+    }) as (accountData: any, string: any) => boolean;
+
+    this.formGroup = formBuilder.group({
+      name: '',
+      id: '',
+    
+    })
+    this.formGroup.valueChanges.subscribe(value => {
+      const filter = {...value, name: value.name.trim().toLowerCase()} as string;
+      this.dataSource.filter = filter;
+    });
    }
 
   ngOnInit(): void {
@@ -111,7 +131,7 @@ console.log("data received :: " + row_obj.id + "  name " + row_obj.name)
   this.buildingService.addUpdateBuilding(row_obj).subscribe(data => {
     if(data !== null) {
       this.buildingDetail = data;
-      this.dataSource.data.push({
+      this.dataSource.data.unshift({
         id:this.buildingDetail.id,
         name:this.buildingDetail.name,
         createdDate:this.buildingDetail.createdDate,

@@ -8,6 +8,7 @@ import { AccountServiceService } from 'src/app/shared/services/account-service/a
 import { TableUtil } from '../table-utils';
 import { DatePipe } from '@angular/common';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { AbstractControl, FormBuilder, FormGroup } from '@angular/forms';
 
 
 @Component({
@@ -16,11 +17,13 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./setting-dashboard.component.scss']
 })
 export class SettingDashboardComponent implements OnInit {
+  // filterValues : any=[];
   accountData : AccountDetail[] = [];
   accountDetail?:any;
   dataSource!: MatTableDataSource<AccountDetail>;
   errorMessage!: string;
   testFileName = 'SampleFile';
+  formGroup!: FormGroup;
   exporter:any;
   displayedColumns: string[] = ['Position', 'Name', 'Roles', 'Floor','Company','Email','Action'];
   // dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
@@ -30,16 +33,43 @@ export class SettingDashboardComponent implements OnInit {
   @ViewChild(MatSort)
   sort!: MatSort;
   
-
-
-  constructor(public dialog: MatDialog, private accountService: AccountServiceService,private _snackBar: MatSnackBar) {
+  readonly formControl!: AbstractControl;
+  // filterSelectObj : any[] = [];
+  constructor(public dialog: MatDialog, private accountService: AccountServiceService,private _snackBar: MatSnackBar,formBuilder: FormBuilder) {
     this.dataSource = new MatTableDataSource<AccountDetail>();
+
+    this.dataSource.filterPredicate = ((data, filter) => {
+      const a = !filter.position || data.position === filter.position;
+      const b = !filter.name || data.name.toLowerCase().includes(filter.name);
+      const c = !filter.roles || data.roles.toLowerCase().includes(filter.roles);
+      const d = !filter.floor || data.floor.toLowerCase().includes(filter.floor);
+      const e = !filter.companyName || data.companyName.toLowerCase().includes(filter.companyName);
+      const f = !filter.email || data.email.toLowerCase().includes(filter.email);
+
+      return a && b && c && d && e && f;
+    }) as (accountData: any, string: any) => boolean;
+
+    this.formGroup = formBuilder.group({
+      name: '',
+      position: '',
+      roles: '',
+      floor: '',
+      companyName: '',
+      email: '',
+    })
+    this.formGroup.valueChanges.subscribe(value => {
+      const filter = {...value, name: value.name.trim().toLowerCase(),roles: value.roles.trim().toLowerCase(),
+        floor: value.floor.trim().toLowerCase(),companyName: value.companyName.trim().toLowerCase(),email: value.email.trim().toLowerCase()} as string;
+      this.dataSource.filter = filter;
+    });
+    
    }
 
    ngOnInit(): void {
     this.accountService.getAccountData().subscribe(data => {
       this.accountData = data;
       this.dataSource.data = this.accountData;
+     
      })
 
  }
@@ -47,13 +77,16 @@ export class SettingDashboardComponent implements OnInit {
   this.dataSource.paginator = this.paginator;
 }
 
-applyFilter(event: Event) {
-  const filterValue = (event.target as HTMLInputElement).value;
-  this.dataSource.filter = filterValue.trim().toLowerCase();
-  if (this.dataSource.paginator) {
-    this.dataSource.paginator.firstPage();
-  }
-}
+
+
+
+// applyFilter(event: Event) {
+//   const filterValue = (event.target as HTMLInputElement).value;
+//   this.dataSource.filter = filterValue.trim().toLowerCase();
+//   if (this.dataSource.paginator) {
+//     this.dataSource.paginator.firstPage();
+//   }
+// }
 
 
 setFileName() {
@@ -117,7 +150,7 @@ exportArray() {
       this.accountService.addUpdateAccount(row_obj).subscribe(data => {
         if(data !== null) {
           this.accountDetail = data;
-          this.dataSource.data.push({
+          this.dataSource.data.unshift({
             id:this.accountDetail.id,
             name:this.accountDetail.name,
             roles:this.accountDetail.roles,
