@@ -59,6 +59,7 @@ import { AcsServerSettingComponent } from './components/app-setting/setting-mana
 import { SmtpSettingComponent } from './components/app-setting/setting-management/smtp-setting/smtp-setting.component';
 import { TanentManagementComponent } from './components/tanent-management/tanent-management.component';
 import { DashboardDialogComponent, TanentDashboardComponent } from './components/tanent-management/tanent-dashboard/tanent-dashboard.component';
+import { EmailNotificationSettingComponent } from './components/app-setting/setting-management/email-notification-setting/email-notification-setting.component';
 @NgModule({
   declarations: [ 
     AppComponent,
@@ -87,7 +88,8 @@ import { DashboardDialogComponent, TanentDashboardComponent } from './components
     SmtpSettingComponent,
     TanentManagementComponent,
     TanentDashboardComponent,
-    DashboardDialogComponent
+    DashboardDialogComponent,
+    EmailNotificationSettingComponent
   ],
   imports: [
     BrowserModule,

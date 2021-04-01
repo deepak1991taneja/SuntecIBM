@@ -1,5 +1,6 @@
 import { DatePipe } from '@angular/common';
 import { Component, Inject, OnInit, Optional, ViewChild } from '@angular/core';
+import { AbstractControl, FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -29,10 +30,32 @@ export class FloorManagementComponent implements OnInit {
   displayedColumns: string[] = ['id', 'buildingName', 'floorName', 'floor', 'Action'];
   //dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
 
+  formGroup!: FormGroup;
+  readonly formControl!: AbstractControl;
   @ViewChild(MatPaginator) paginator: MatPaginator | any;
  
-  constructor(public dialog: MatDialog, private floorService: FloorServiceService, private buildingService: BuildingServiceService, private _snackBar: MatSnackBar) {
+  constructor(public dialog: MatDialog, private floorService: FloorServiceService, private buildingService: BuildingServiceService, private _snackBar: MatSnackBar,formBuilder: FormBuilder) {
     this.dataSource = new MatTableDataSource<FloorDetail>();
+    this.dataSource.filterPredicate = ((data, filter) => {
+      const a = !filter.id || data.id === filter.id;
+      const b = !filter.buildingName || data.buildingName.name.toLowerCase().includes(filter.buildingName);
+      const c = !filter.floorName || data.floorName.toLowerCase().includes(filter.floorName);
+      const d = !filter.floor || data.floor.toLowerCase().includes(filter.floor);
+      
+      return a && b && c && d ;
+    }) as (floorData: any , string: any) => boolean;
+
+    this.formGroup = formBuilder.group({
+      buildingName: '',
+      id: '',
+      floorName: '',
+      floor: '',
+    })
+    this.formGroup.valueChanges.subscribe(value => {
+      const filter = {...value, buildingName: value.buildingName.trim().toLowerCase(),
+        floorName: value.floorName.trim().toLowerCase(),floor: value.floor.trim().toLowerCase()} as string;
+      this.dataSource.filter = filter;
+    });
    }
 
   ngOnInit(): void {
@@ -51,13 +74,13 @@ export class FloorManagementComponent implements OnInit {
     this.dataSource.paginator = this.paginator;
   }
 
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-    if (this.dataSource.paginator) {
-      this.dataSource.paginator.firstPage();
-    }
-  }
+  // applyFilter(event: Event) {
+  //   const filterValue = (event.target as HTMLInputElement).value;
+  //   this.dataSource.filter = filterValue.trim().toLowerCase();
+  //   if (this.dataSource.paginator) {
+  //     this.dataSource.paginator.firstPage();
+  //   }
+  // }
 
   setFileName() {
     this.testFileName = 'ExportResult' + '_' +
@@ -122,7 +145,7 @@ console.log("data received :: " + row_obj.id + "  name " + row_obj.buildingName.
   this.floorService.addUpdateFloor(row_obj).subscribe(data => {
     if(data !== null) {
       this.floorDetail = data;
-      this.dataSource.data.push({
+      this.dataSource.data.unshift({
         id:this.floorDetail.id,
         buildingName:this.floorDetail.buildingName,
         floorName:this.floorDetail.floorName,
