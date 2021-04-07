@@ -1,10 +1,10 @@
 <h1 mat-dialog-title><strong>{{action}}</strong> - Fr-Tablet Data</h1>
 <div mat-dialog-content *ngIf="action != 'Delete'; else elseTemplate" fxLayout="column" fxLayoutAlign="center"> 
     <mat-form-field>
-      <input placeholder="{{action}} Name" matInput [(ngModel)]="local_data.name">
+      <input placeholder="{{action}} Name" matInput [(ngModel)]="local_data.name" required="true">
     </mat-form-field>
     <mat-form-field>
-      <input placeholder="{{action}} Protocol" matInput [(ngModel)]="local_data.protocol">
+      <input placeholder="{{action}} Protocol" matInput [(ngModel)]="local_data.protocol" required="true">
     </mat-form-field>
     <mat-form-field appearance="fill">
       <mat-label>select Floor</mat-label>
@@ -14,13 +14,13 @@
       </mat-select>
     </mat-form-field>
     <mat-form-field>
-      <input placeholder="{{action}} IP" matInput [(ngModel)]="local_data.ip">
+      <input placeholder="{{action}} IP" matInput [(ngModel)]="local_data.ip" required="true">
     </mat-form-field>
     <mat-form-field>
-      <input placeholder="{{action}} Port" matInput [(ngModel)]="local_data.port">
+      <input placeholder="{{action}} Port" matInput [(ngModel)]="local_data.port" required="true">
     </mat-form-field>
     <mat-form-field>
-        <input placeholder="{{action}} Account" matInput [(ngModel)]="local_data.account">
+        <input placeholder="{{action}} Account" matInput [(ngModel)]="local_data.account" required="true">
       </mat-form-field>
     </div><ng-template #elseTemplate>
       Sure to delete <b>{{local_data.name}}</b>?

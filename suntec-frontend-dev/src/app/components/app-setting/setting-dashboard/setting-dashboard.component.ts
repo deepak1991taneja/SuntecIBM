@@ -9,6 +9,7 @@ import { TableUtil } from '../table-utils';
 import { DatePipe } from '@angular/common';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AbstractControl, FormBuilder, FormGroup } from '@angular/forms';
+import { validateBasis } from '@angular/flex-layout';
 
 
 @Component({
@@ -246,7 +247,7 @@ export class AccountDialogComponent {
   local_data:any;
   constructor(
     public dialogRef: MatDialogRef<AccountDialogComponent>,
-    @Optional() @Inject(MAT_DIALOG_DATA) public data: AccountDetail) {
+    @Optional() @Inject(MAT_DIALOG_DATA) public data: AccountDetail,private _snackBar: MatSnackBar) {
       console.log("data inside dialog :: " + data.name);
   this.local_data = {...data};
 
@@ -258,13 +259,45 @@ export class AccountDialogComponent {
   }
 
   doAction(){
-    this.dialogRef.close({event:this.action,data:this.local_data});
+    console.log("Action Clicked "+this.action)
+   
+    if(this.validate(this.local_data.name)){
+      this._snackBar.open("Please enter name !!", "Close", {
+        duration: 2000,
+      });
+    }else if(this.validate(this.local_data.roles) ){
+      this._snackBar.open("Please enter roles !!", "Close", {
+        duration: 2000,
+      });
+    }else if(this.validate(this.local_data.floor)){
+      this._snackBar.open("Please enter floor !!", "Close", {
+        duration: 2000,
+      });
+    }else if(this.validate(this.local_data.companyName)){
+      this._snackBar.open("Please enter company name !!", "Close", {
+        duration: 2000,
+      });
+    }else if(this.validate(this.local_data.email)){
+      this._snackBar.open("Please enter email !!", "Close", {
+        duration: 2000,
+      });
+    }else{
+ this.dialogRef.close({event:this.action,data:this.local_data});
+    }
+   
   }
 
   closeDialog(){
     this.dialogRef.close({event:'Cancel'});
   }
-
+   validate(fieldData: String) {
+    if(fieldData == null || fieldData == "")
+    return true;
+    else
+    return false;
+  }
 }
+
+
 
 

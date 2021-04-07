@@ -254,9 +254,9 @@ deleteRowData(row_obj:CompanyDetail){
 export class CompanyDialogComponent {
   action?:string;
   local_data:any;
-  constructor(
+    constructor(
     public dialogRef: MatDialogRef<CompanyDialogComponent>,
-    @Optional() @Inject(MAT_DIALOG_DATA) public data: CompanyDetail) {
+    @Optional() @Inject(MAT_DIALOG_DATA) public data: CompanyDetail,private _snackBar: MatSnackBar) {
       console.log("data inside dialog :: " + data.companyName);
   this.local_data = {...data};
 
@@ -268,11 +268,39 @@ export class CompanyDialogComponent {
   }
 
   doAction(){
+    if(this.validate(this.local_data.companyName)){
+      this._snackBar.open("Please enter company name !!", "Close", {
+        duration: 2000,
+      });
+    } else if(this.validate(this.local_data.floorName)){
+      this._snackBar.open("Please select floor !!", "Close", {
+        duration: 2000,
+      });
+    } else if(this.validate(this.local_data.contactPerson)){
+      this._snackBar.open("Please enter contact person !!", "Close", {
+        duration: 2000,
+      });
+    } else if(this.validate(this.local_data.unitNumber)){
+      this._snackBar.open("Please enter unit number !!", "Close", {
+        duration: 2000,
+      });
+    } else if(this.validate(this.local_data.contactNumber)){
+      this._snackBar.open("Please enter contact number !!", "Close", {
+        duration: 2000,
+      });
+    }else{
     this.dialogRef.close({event:this.action,data:this.local_data});
+  }
   }
 
   closeDialog(){
     this.dialogRef.close({event:'Cancel'});
+  }
+  validate(fieldData: String) {
+    if(fieldData == null || fieldData == "")
+    return true;
+    else
+    return false;
   }
 
 }

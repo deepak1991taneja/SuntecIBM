@@ -2,7 +2,7 @@
 <h1 mat-dialog-title><strong>{{action}}</strong> - Building Data</h1>
 <div fxLayout="column" fxLayoutAlign="center" mat-dialog-content>
   <mat-form-field *ngIf="action != 'Delete'; else elseTemplate">
-    <input placeholder="{{action}} Building Name" matInput [(ngModel)]="local_data.name">
+    <input placeholder="{{action}} Building Name" matInput [(ngModel)]="local_data.name" required="true">
   </mat-form-field>
   <ng-template #elseTemplate>
     Sure to delete <b>{{local_data.name}}</b>?

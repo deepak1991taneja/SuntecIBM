@@ -211,9 +211,9 @@ deleteRowData(row_obj:BuildingDetail){
   export class BuildingDialogComponent {
     action?:string;
     local_data:any;
-    constructor(
+       constructor(
       public dialogRef: MatDialogRef<BuildingDialogComponent>,
-      @Optional() @Inject(MAT_DIALOG_DATA) public data: BuildingDetail) {
+      @Optional() @Inject(MAT_DIALOG_DATA) public data: BuildingDetail,private _snackBar: MatSnackBar) {
         console.log(data);
     this.local_data = {...data};
     this.action = this.local_data.action;
@@ -224,11 +224,23 @@ deleteRowData(row_obj:BuildingDetail){
     }
 
     doAction(){
+      if(this.validate(this.local_data.name)){
+        this._snackBar.open("Please enter building name !!", "Close", {
+          duration: 2000,
+        });
+      }else{
       this.dialogRef.close({event:this.action,data:this.local_data});
+      }
     }
   
     closeDialog(){
       this.dialogRef.close({event:'Cancel'});
     }
   
+    validate(fieldData: String) {
+      if(fieldData == null || fieldData == "")
+      return true;
+      else
+      return false;
+    }
   }

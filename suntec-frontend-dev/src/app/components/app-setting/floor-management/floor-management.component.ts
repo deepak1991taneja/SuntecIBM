@@ -234,7 +234,7 @@ export class FloorDialogComponent {
   local_data:any;
   constructor(
     public dialogRef: MatDialogRef<FloorDialogComponent>,
-    @Optional() @Inject(MAT_DIALOG_DATA) public data: FloorDetail) {
+    @Optional() @Inject(MAT_DIALOG_DATA) public data: FloorDetail,private _snackBar: MatSnackBar) {
       console.log("data inside dialog :: " + data.buildingName);
   this.local_data = {...data};
 
@@ -246,11 +246,30 @@ export class FloorDialogComponent {
   }
 
   doAction(){
+    if(this.validate(this.local_data.buildName)){
+      this._snackBar.open("Please select building name !!", "Close", {
+        duration: 2000,
+      });
+    }else if(this.validate(this.local_data.floorName) ){
+      this._snackBar.open("Please enter floor name !!", "Close", {
+        duration: 2000,
+      });
+    }else if(this.validate(this.local_data.floor) ){
+      this._snackBar.open("Please enter floor !!", "Close", {
+        duration: 2000,
+      });
+    }else{
     this.dialogRef.close({event:this.action,data:this.local_data});
+    }
   }
 
   closeDialog(){
     this.dialogRef.close({event:'Cancel'});
   }
-
+  validate(fieldData: String) {
+    if(fieldData == null || fieldData == "")
+    return true;
+    else
+    return false;
+  }
 }

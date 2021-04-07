@@ -37,7 +37,7 @@ export class TanentDashboardComponent implements OnInit {
   currentFileUpload?: File;
   selectedFiles?: FileList;
   loaded = 0;
-  message = '';
+  message : any;
   firstFormGroup!: FormGroup;
   secondFormGroup!: FormGroup;
 
@@ -382,26 +382,69 @@ selectDirectoryStep2(event:any){
 
 uploadStepper(){
 
-  let step1: File|null|undefined  = this.firstFormGroup.get("firstCtrl")?.value;
-  let step2:FileList|null|undefined = this.secondFormGroup.get("secondCtrl")?.value;
+  
+//   let formData:FormData = new FormData();
+     
+// this.userLoginService.uploadExcelFile(formData).subscribe((event: any) =>{
+//   const blob = new Blob([event.body],{type : 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'})
 
-  if(step1 && step2){
+//   if(window.navigator && window.navigator.msSaveOrOpenBlob){
+//     window.navigator.msSaveOrOpenBlob(blob);
+//     return;
+//   }
+//   const data =window.URL.createObjectURL(blob);
+//   const link =document.createElement('a');
+//   link.href=data;
+//   link.download='Tenent_Staff.csv';
+//   link.dispatchEvent(new MouseEvent('click',{bubbles: true,cancelable : true,view: window}));
+  
+//   setTimeout(function() {
+//     window.URL.revokeObjectURL(data);
+//     link.remove();
+//   }, 100);
+// });
+   let step1: File|null|undefined  = this.firstFormGroup.get("firstCtrl")?.value;
+   let step2:FileList|null|undefined = this.secondFormGroup.get("secondCtrl")?.value;
+
+   if(step1 && step2){
     
-    let formData:FormData = new FormData();
-    formData.append('uploadFile', step1, step1.name);
+     let formData:FormData = new FormData();
+     formData.append('uploadFile', step1, step1.name);
     for (let i = 0; i < step2.length; i++) {
-      formData.append('images[]', step2[i], step2[i].name);
+       formData.append('images[]', step2[i], step2[i].name);
     }
    
-    this.userLoginService.uploadExcelFile(formData)
+     this.userLoginService.uploadExcelFile(formData)
     .subscribe(
       (event: any) => {
         if (event.type === HttpEventType.UploadProgress) {
           this.loaded = Math.round(100 * event.loaded / event.total);
         } else if (event instanceof HttpResponse) {
-          console.log("response received ::: "+ JSON.stringify(event.body));
+         // console.log("response received ::: "+ JSON.stringify(event.body.));
           this.message = event.body;
-          this.usersImport = event.body;
+          console.log("user data ::: " +this.message);
+
+          const blob = new Blob([event.body],{type : 'application/vnd.ms-excel'})
+
+          if(window.navigator && window.navigator.msSaveOrOpenBlob){
+            window.navigator.msSaveOrOpenBlob(blob);
+            return;
+          }
+          const data =window.URL.createObjectURL(blob);
+          const link =document.createElement('a');
+          link.href=data;
+          link.download='Tenent_Staff.xlsx';
+          link.dispatchEvent(new MouseEvent('click',{bubbles: true,cancelable : true,view: window}));
+          
+          setTimeout(function() {
+            window.URL.revokeObjectURL(data);
+            link.remove();
+          }, 100);
+
+
+//////
+
+          this.usersImport = this.message.usersData;
           this.usersImport.forEach(element => {
             this.userDetail = element;
             this.dataSource.data.push({
@@ -444,6 +487,9 @@ uploadStepper(){
           });
           this.firstFormGroup.controls.firstCtrl.setValue(undefined);
         }
+
+       
+
       },
       (err: any) => {
         console.log(err);

@@ -12,10 +12,10 @@
         <input placeholder="{{action}} Building Name" matInput [(ngModel)]="local_data.buildingName">
       </mat-form-field> -->
     <mat-form-field>
-    <input placeholder="{{action}} Floor Name" matInput [(ngModel)]="local_data.floorName">
+    <input placeholder="{{action}} Floor Name" matInput [(ngModel)]="local_data.floorName" required="true">
   </mat-form-field>
   <mat-form-field>
-    <input placeholder="{{action}} Floor" matInput [(ngModel)]="local_data.floor">
+    <input placeholder="{{action}} Floor" matInput [(ngModel)]="local_data.floor" required="true">
   </mat-form-field>
 </div>
 <ng-template #elseTemplate>

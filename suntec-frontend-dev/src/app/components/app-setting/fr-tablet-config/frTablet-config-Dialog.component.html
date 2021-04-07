@@ -1,0 +1,22 @@
+<h1 mat-dialog-title><strong>{{action}}</strong> - Fr-Tablet Config Data</h1>
+<div mat-dialog-content *ngIf="action != 'Delete'; else elseTemplate" fxLayout="column" fxLayoutAlign="center"> 
+    <mat-form-field>
+      <input placeholder="{{action}} userName" matInput [(ngModel)]="local_data.userName" required="true">
+    </mat-form-field>
+        <mat-form-field>
+      <input placeholder="{{action}} ip" matInput [(ngModel)]="local_data.ip" required="true">
+    </mat-form-field>
+    <mat-form-field>
+      <input placeholder="{{action}} port" matInput [(ngModel)]="local_data.port" required="true">
+    </mat-form-field>
+    <mat-form-field>
+        <input placeholder="{{action}} password" type="password" matInput [(ngModel)]="local_data.password" required="true">
+      </mat-form-field>
+    </div><ng-template #elseTemplate>
+      Sure to delete <b>{{local_data.userName}}</b>?
+    </ng-template>
+  <div mat-dialog-actions>
+    <button mat-flat-button color="primary"  (click)="doAction()">{{action}}</button>
+    <button mat-button (click)="closeDialog()" mat-flat-button color="warn">Cancel</button>
+  </div>
+  

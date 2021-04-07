@@ -44,7 +44,7 @@ uploadExcelFile(post:FormData): Observable<HttpEvent<any>>{
 
   const req = new HttpRequest('POST', API_URL+`staffData/uploadFile`, post, {
     reportProgress: true,
-    responseType: 'json'
+    responseType: 'blob'
   });
 
   return this.http.request(req);

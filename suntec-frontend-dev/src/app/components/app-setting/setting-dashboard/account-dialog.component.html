@@ -1,19 +1,19 @@
 <h1 mat-dialog-title><strong>{{action}}</strong> - Account Data</h1>
 <div mat-dialog-content *ngIf="action != 'Delete'; else elseTemplate" fxLayout="column" fxLayoutAlign="center"> 
     <mat-form-field>
-      <input placeholder="{{action}} Name" matInput [(ngModel)]="local_data.name">
+      <input placeholder="{{action}} Name" matInput [(ngModel)]="local_data.name" required="true">
     </mat-form-field>
     <mat-form-field>
-      <input placeholder="{{action}} Roles" matInput [(ngModel)]="local_data.roles">
+      <input placeholder="{{action}} Roles" matInput [(ngModel)]="local_data.roles" required="true">
     </mat-form-field>
     <mat-form-field>
-      <input placeholder="{{action}} Floor" matInput [(ngModel)]="local_data.floor">
+      <input placeholder="{{action}} Floor" matInput [(ngModel)]="local_data.floor" required="true">
     </mat-form-field>
     <mat-form-field>
-      <input placeholder="{{action}} Company Name" matInput [(ngModel)]="local_data.companyName">
+      <input placeholder="{{action}} Company Name" matInput [(ngModel)]="local_data.companyName" required="true">
     </mat-form-field>
     <mat-form-field>
-      <input placeholder="{{action}} Email" matInput [(ngModel)]="local_data.email">
+      <input placeholder="{{action}} Email" matInput [(ngModel)]="local_data.email" required="true">
     </mat-form-field>
     </div><ng-template #elseTemplate>
       Sure to delete <b>{{local_data.name}}</b>?

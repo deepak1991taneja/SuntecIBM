@@ -5,6 +5,7 @@ import { BuildingManagementComponent } from './components/app-setting/building-m
 import { CompanyManagementComponent } from './components/app-setting/company-management/company-management.component';
 import { DoorManagementComponent } from './components/app-setting/door-management/door-management.component';
 import { FloorManagementComponent } from './components/app-setting/floor-management/floor-management.component';
+import { FrTabletConfigComponent } from './components/app-setting/fr-tablet-config/fr-tablet-config.component';
 import { FrTabletComponent } from './components/app-setting/fr-tablet/fr-tablet.component';
 import { SettingDashboardComponent } from './components/app-setting/setting-dashboard/setting-dashboard.component';
 import { AcsServerSettingComponent } from './components/app-setting/setting-management/acs-server-setting/acs-server-setting.component';
@@ -17,6 +18,7 @@ import { NevigationComponent } from './components/navigation/nevigation.componen
 import { SelectAppComponent } from './components/select-app/select-app.component';
 import { TanentDashboardComponent } from './components/tanent-management/tanent-dashboard/tanent-dashboard.component';
 import { TanentManagementComponent } from './components/tanent-management/tanent-management.component';
+
 
 
 const routes: Routes = [
@@ -68,6 +70,10 @@ const routes: Routes = [
 {
   path:'fr-tablet' , 
   component:FrTabletComponent
+},
+{
+  path:'frTablet-config',
+  component: FrTabletConfigComponent
 },
 {
   path:'door-management' , 

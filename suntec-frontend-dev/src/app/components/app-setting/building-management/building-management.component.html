@@ -31,7 +31,7 @@
    <mat-divider></mat-divider>
    <mat-divider></mat-divider>
       <mat-card-content>
-        <div class="mat-elevation-z8 formDiv" style=" margin-left: 2rem;margin-right: 2rem; ">
+        <!-- <div class="mat-elevation-z8 formDiv" style=" margin-left: 2rem;margin-right: 2rem; ">
         <form style="display: flex" [formGroup]="formGroup">
           
             <div fxLayout="row" fxLayoutAlign="space-between  center" fxLayoutGap="2rem">
@@ -41,7 +41,7 @@
           </mat-form-field>
         </div>
             </form>
-          </div>
+          </div> -->
         <div class="mat-elevation-z8 tableDiv">
           <!-- <mat-form-field  [style.width.rem]=25 [style.padding-left.rem]=2>
        <mat-label>Filter</mat-label>
@@ -55,7 +55,13 @@
              </ng-container>
                       
              <ng-container matColumnDef="Name">
-               <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+              <th mat-header-cell *matHeaderCellDef mat-sort-header><form  [formGroup]="formGroup">
+                <mat-form-field>
+           <input matInput formControlName="name">
+            <mat-placeholder style=" color:white; font-size: 13px;">Name</mat-placeholder>
+          </mat-form-field>
+
+          </form> </th>
                <td mat-cell *matCellDef="let element"> {{element.name}} </td>
              </ng-container>
 

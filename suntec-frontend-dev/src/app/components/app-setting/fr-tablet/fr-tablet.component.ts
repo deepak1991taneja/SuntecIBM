@@ -249,7 +249,7 @@ export class FrTabletDialogComponent {
   local_data:any;
   constructor(
     public dialogRef: MatDialogRef<FrTabletDialogComponent>,
-    @Optional() @Inject(MAT_DIALOG_DATA) public data: FrTabletDetail) {
+    @Optional() @Inject(MAT_DIALOG_DATA) public data: FrTabletDetail,private _snackBar: MatSnackBar) {
       console.log("data inside dialog :: " + data.name);
   this.local_data = {...data};
 
@@ -261,11 +261,43 @@ export class FrTabletDialogComponent {
   }
 
   doAction(){
+    if(this.validate(this.local_data.name)){
+      this._snackBar.open("Please enter name !!", "Close", {
+        duration: 2000,
+      });
+    }else if(this.validate(this.local_data.protocol) ){
+      this._snackBar.open("Please enter protocol !!", "Close", {
+        duration: 2000,
+      });
+    }else if(this.validate(this.local_data.floorData)){
+      this._snackBar.open("Please select floor !!", "Close", {
+        duration: 2000,
+      });
+    }else if(this.validate(this.local_data.ip)){
+      this._snackBar.open("Please enter ip !!", "Close", {
+        duration: 2000,
+      });
+    }else if(this.validate(this.local_data.port)){
+      this._snackBar.open("Please enter port !!", "Close", {
+        duration: 2000,
+      });
+    }else if(this.validate(this.local_data.account)){
+      this._snackBar.open("Please enter account !!", "Close", {
+        duration: 2000,
+      });
+    }else {
     this.dialogRef.close({event:this.action,data:this.local_data});
+    }
   }
 
   closeDialog(){
     this.dialogRef.close({event:'Cancel'});
+  }
+  validate(fieldData: String) {
+    if(fieldData == null || fieldData == "")
+    return true;
+    else
+    return false;
   }
 
 }

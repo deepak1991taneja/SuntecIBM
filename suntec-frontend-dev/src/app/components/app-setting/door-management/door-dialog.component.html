@@ -3,7 +3,7 @@
 <div fxLayout="column" fxLayoutAlign="center" mat-dialog-content *ngIf="action != 'Delete'; else elseTemplate"> 
  
   <mat-form-field>
-    <input placeholder="{{action}} Door Name" matInput [(ngModel)]="local_data.doorName">
+    <input placeholder="{{action}} Door Name" matInput [(ngModel)]="local_data.doorName" required="true">
   </mat-form-field>
   <mat-form-field appearance="fill">
     <mat-label>select Floor</mat-label>
@@ -16,15 +16,15 @@
         <input placeholder="{{action}} Building Name" matInput [(ngModel)]="local_data.buildingName">
       </mat-form-field> -->
     <mat-form-field>
-    <input placeholder="{{action}} Range" matInput [(ngModel)]="local_data.range">
+    <input placeholder="{{action}} Range" matInput [(ngModel)]="local_data.range" required="true">
   </mat-form-field>
 
   <mat-form-field>
-    <input placeholder="{{action}} Company Name" matInput [(ngModel)]="local_data.companyName">
+    <input placeholder="{{action}} Company Name" matInput [(ngModel)]="local_data.companyName" required="true">
   </mat-form-field>
 
   <mat-form-field>
-    <input placeholder="{{action}} Endpoint Name" matInput [(ngModel)]="local_data.endPointName">
+    <input placeholder="{{action}} Endpoint Name" matInput [(ngModel)]="local_data.endPointName" required="true">
   </mat-form-field>
  
 </div>

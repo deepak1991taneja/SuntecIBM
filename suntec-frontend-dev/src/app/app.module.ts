@@ -60,6 +60,7 @@ import { SmtpSettingComponent } from './components/app-setting/setting-managemen
 import { TanentManagementComponent } from './components/tanent-management/tanent-management.component';
 import { DashboardDialogComponent, TanentDashboardComponent } from './components/tanent-management/tanent-dashboard/tanent-dashboard.component';
 import { EmailNotificationSettingComponent } from './components/app-setting/setting-management/email-notification-setting/email-notification-setting.component';
+import { FrTabletConfigComponent, FrTabletConfigDialogComponent } from './components/app-setting/fr-tablet-config/fr-tablet-config.component';
 @NgModule({
   declarations: [ 
     AppComponent,
@@ -89,7 +90,9 @@ import { EmailNotificationSettingComponent } from './components/app-setting/sett
     TanentManagementComponent,
     TanentDashboardComponent,
     DashboardDialogComponent,
-    EmailNotificationSettingComponent
+    EmailNotificationSettingComponent,
+    FrTabletConfigComponent,
+    FrTabletConfigDialogComponent
   ],
   imports: [
     BrowserModule,
