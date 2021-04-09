@@ -86,52 +86,62 @@
              </ng-container>
                      
              <ng-container matColumnDef="Name" >
-              <th mat-header-cell *matHeaderCellDef mat-sort-header><form  [formGroup]="formGroup">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                <div fxLayout="row" fxLayoutAlign="space-between  center" fxLayoutGap="2rem">
+                <form  [formGroup]="formGroup">
                 <mat-form-field>
            <input matInput formControlName="name">
             <mat-placeholder style=" color:white; font-size: 13px;">Name</mat-placeholder>
           </mat-form-field>
-          </form> </th>
+          </form></div> </th>
                <td mat-cell *matCellDef="let element"> {{element.name}} </td>
              </ng-container>
                        
              <ng-container matColumnDef="Protocol">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header><form  [formGroup]="formGroup">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                <div fxLayout="row" fxLayoutAlign="space-between  center" fxLayoutGap="2rem">
+                <form  [formGroup]="formGroup">
                 <mat-form-field>
            <input matInput formControlName="protocol">
             <mat-placeholder style=" color:white; font-size: 13px;">Protocol</mat-placeholder>
           </mat-form-field>
-          </form> </th>
+          </form></div> </th>
                <td mat-cell *matCellDef="let element"> {{element.protocol}} </td>
              </ng-container>
 
              <ng-container matColumnDef="IP">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header><form  [formGroup]="formGroup">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                <div fxLayout="row" fxLayoutAlign="space-between  center" fxLayoutGap="2rem">
+                <form  [formGroup]="formGroup">
                 <mat-form-field>
            <input matInput formControlName="ip">
             <mat-placeholder style=" color:white; font-size: 13px;">IP</mat-placeholder>
           </mat-form-field>
-          </form> </th>
+          </form></div> </th>
                <td mat-cell *matCellDef="let element"> {{element.ip}} </td>
              </ng-container>
 
              <ng-container matColumnDef="Port">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header><form  [formGroup]="formGroup">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                <div fxLayout="row" fxLayoutAlign="space-between  center" fxLayoutGap="2rem">
+                <form  [formGroup]="formGroup">
                 <mat-form-field>
            <input matInput formControlName="port">
             <mat-placeholder style=" color:white; font-size: 13px;">Port</mat-placeholder>
           </mat-form-field>
-          </form> </th>
+          </form></div> </th>
                <td mat-cell *matCellDef="let element"> {{element.port}} </td>
              </ng-container>
 
              <ng-container matColumnDef="Account">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header><form  [formGroup]="formGroup">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                <div fxLayout="row" fxLayoutAlign="space-between  center" fxLayoutGap="2rem">
+                <form  [formGroup]="formGroup">
                 <mat-form-field>
            <input matInput formControlName="account">
             <mat-placeholder style=" color:white; font-size: 13px;">Account</mat-placeholder>
           </mat-form-field>
-          </form> </th>
+          </form></div> </th>
                 <td mat-cell *matCellDef="let element"> {{element.account}} </td>
               </ng-container>
 

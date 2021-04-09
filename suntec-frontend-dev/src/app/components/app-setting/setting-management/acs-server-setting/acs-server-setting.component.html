@@ -17,21 +17,21 @@
     <div fxLayout="row">
     <mat-form-field class="form-element">
         <mat-label>Staff card range Start</mat-label>
-        <input matInput placeholder="Add staff card range start" [(ngModel)]="rangeData.staffCardRangeStart" autocomplete="off">
+        <input matInput placeholder="Add staff card range start" [(ngModel)]="rangeData.staffCardRangeStart" autocomplete="off" required>
       </mat-form-field>
       <mat-form-field  class="form-element">
         <mat-label>Staff card range end</mat-label>
-        <input matInput placeholder="Add staff card range end" [(ngModel)]="rangeData.staffCardRangeEnd" autocomplete="off">
+        <input matInput placeholder="Add staff card range end" [(ngModel)]="rangeData.staffCardRangeEnd" autocomplete="off" required>
       </mat-form-field>
 </div>
 <div fxLayout="row">
     <mat-form-field  class="form-element">
         <mat-label>Visitor card range start</mat-label>
-        <input matInput placeholder="Add visitor card range start" [(ngModel)]="rangeData.visitorCardRangeStart" autocomplete="off">
+        <input matInput placeholder="Add visitor card range start" [(ngModel)]="rangeData.visitorCardRangeStart" autocomplete="off" required>
       </mat-form-field>
       <mat-form-field  class="form-element">
         <mat-label>Visitor card range end</mat-label>
-        <input matInput placeholder="Add visitor card range end" [(ngModel)]="rangeData.visitorCardRangeEnd" autocomplete="off">
+        <input matInput placeholder="Add visitor card range end" [(ngModel)]="rangeData.visitorCardRangeEnd" autocomplete="off" required>
       </mat-form-field>
 </div>
 <div fxLayout="row">
@@ -62,17 +62,17 @@
   <div fxLayout="row">
   <mat-form-field class="form-element">
       <mat-label>IP Address</mat-label>
-      <input matInput placeholder="Add ip Address" [(ngModel)]="acsData.ipAddress" autocomplete="off">
+      <input matInput placeholder="Add ip Address" [(ngModel)]="acsData.ipAddress" autocomplete="off" required>
     </mat-form-field>
     <mat-form-field  class="form-element">
       <mat-label>HTTP Port</mat-label>
-      <input matInput placeholder="Add http port" [(ngModel)]="acsData.httpPort" autocomplete="off">
+      <input matInput placeholder="Add http port" [(ngModel)]="acsData.httpPort" autocomplete="off" required>
     </mat-form-field>
 </div>
 <div fxLayout="row">
   <mat-form-field  class="form-element">
       <mat-label>Service Name</mat-label>
-      <input matInput placeholder="Add service range" [(ngModel)]="acsData.serviceName" autocomplete="off">
+      <input matInput placeholder="Add service range" [(ngModel)]="acsData.serviceName" autocomplete="off" required>
     </mat-form-field>
 </div>
 
