@@ -33,6 +33,15 @@ export class EmailNotificationSettingComponent implements OnInit {
  }
 
  SaveEmailNotificationData(){
+  if(this.validate(this.emailNotificationData.email)){
+    this._snackBar.open("Please enter the email address !!", "Close", {
+      duration: 2000,
+    });
+  }else if(this.validate(this.emailNotificationData.password) ){
+    this._snackBar.open("Please enter the password !!", "Close", {
+      duration: 2000,
+    });
+  }else{
   this.settingService.updateEmailNotificationData(this.emailNotificationData).subscribe(data => {
     if(data !== null) {
       this.emailNotificationDetail= data;
@@ -51,9 +60,11 @@ export class EmailNotificationSettingComponent implements OnInit {
        this.errorMessage = "Username is already exist";
      }
    });
+  }
 }
 
 ResetEmailNotificationData(){
+
   this.settingService.ResetEmailNotificationData().subscribe(data => {
     if(data !== null) {
       this.emailNotificationDetail= data;
@@ -73,7 +84,13 @@ ResetEmailNotificationData(){
        this.errorMessage = "Username is already exist";
      }
    });
+  
 }
-
+validate(fieldData: String) {
+  if(fieldData == null || fieldData == "")
+  return true;
+  else
+  return false;
+}
 
 }

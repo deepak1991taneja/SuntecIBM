@@ -40,6 +40,23 @@ export class AcsServerSettingComponent implements OnInit {
   }
 
   SaveData(){
+    if(this.validate(this.rangeData.staffCardRangeStart)){
+      this._snackBar.open("Please enter the staff card range start !!", "Close", {
+        duration: 2000,
+      });
+    }else if(this.validate(this.rangeData.staffCardRangeEnd) ){
+      this._snackBar.open("Please enter the staff card range end !!", "Close", {
+        duration: 2000,
+      });
+    }else if(this.validate(this.rangeData.visitorCardRangeStart) ){
+      this._snackBar.open("Please enter the visitor card range start !!", "Close", {
+        duration: 2000,
+      });
+    }else if(this.validate(this.rangeData.visitorCardRangeEnd) ){
+      this._snackBar.open("Please enter the visitor card range end !!", "Close", {
+        duration: 2000,
+      });
+    }else{
     this.settingService.updateCardRange(this.rangeData).subscribe(data => {
       if(data !== null) {
         this.rangeDetail= data;
@@ -58,6 +75,7 @@ export class AcsServerSettingComponent implements OnInit {
          this.errorMessage = "Username is already exist";
        }
      });
+    }
   }
 
   ResetRangeData(){
@@ -84,6 +102,20 @@ export class AcsServerSettingComponent implements OnInit {
 
 
   SaveAcsData(){
+ 
+    if(this.validate(this.acsData.ipAddress)){
+      this._snackBar.open("Please enter the ip address !!", "Close", {
+        duration: 2000,
+      });
+    }else if(this.validate(this.acsData.httpPort) ){
+      this._snackBar.open("Please enter the http port !!", "Close", {
+        duration: 2000,
+      });
+    }else if(this.validate(this.acsData.serviceName) ){
+      this._snackBar.open("Please enter the service name !!", "Close", {
+        duration: 2000,
+      });
+    }else{
     this.settingService.updateACSData(this.acsData).subscribe(data => {
       if(data !== null) {
         this.acsDetail= data;
@@ -102,6 +134,7 @@ export class AcsServerSettingComponent implements OnInit {
          this.errorMessage = "Username is already exist";
        }
      });
+    }
   }
 
   ResetAcsData(){
@@ -124,6 +157,12 @@ export class AcsServerSettingComponent implements OnInit {
          this.errorMessage = "Username is already exist";
        }
      });
+  }
+  validate(fieldData: String) {
+    if(fieldData == null || fieldData == "")
+    return true;
+    else
+    return false;
   }
 
 }

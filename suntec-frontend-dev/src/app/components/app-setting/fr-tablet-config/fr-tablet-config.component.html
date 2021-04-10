@@ -46,32 +46,38 @@
              </ng-container>
                       
              <ng-container matColumnDef="ip">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header><form  [formGroup]="formGroup">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                <div fxLayout="row" fxLayoutAlign="space-between  center" fxLayoutGap="2rem">
+                <form  [formGroup]="formGroup">
                 <mat-form-field>
            <input matInput formControlName="ip">
             <mat-placeholder style=" color:white; font-size: 13px;">IP</mat-placeholder>
           </mat-form-field>
-          </form> </th>
+          </form></div> </th>
                <td mat-cell *matCellDef="let element"> {{element.ip}} </td>
              </ng-container>
 
              <ng-container matColumnDef="port">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header><form  [formGroup]="formGroup">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                <div fxLayout="row" fxLayoutAlign="space-between  center" fxLayoutGap="2rem">
+                <form  [formGroup]="formGroup">
                 <mat-form-field>
            <input matInput formControlName="port">
             <mat-placeholder style=" color:white; font-size: 13px;">Port</mat-placeholder>
           </mat-form-field>
-          </form> </th>
+          </form></div> </th>
                <td mat-cell *matCellDef="let element"> {{element.port}} </td>
              </ng-container>
 
              <ng-container matColumnDef="userName">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header><form  [formGroup]="formGroup">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                <div fxLayout="row" fxLayoutAlign="space-between  center" fxLayoutGap="2rem">
+                <form  [formGroup]="formGroup">
                 <mat-form-field>
            <input matInput formControlName="userName">
             <mat-placeholder style=" color:white; font-size: 13px;">User Name</mat-placeholder>
           </mat-form-field>
-          </form> </th>
+          </form> </div></th>
                 <td mat-cell *matCellDef="let element"> {{element.userName}} </td>
               </ng-container>
                <!-- <ng-container matColumnDef="password">

@@ -31,6 +31,23 @@ export class SmtpSettingComponent implements OnInit {
   }
 
   SaveSmtpData(){
+    if(this.validate(this.smtpData.host)){
+      this._snackBar.open("Please enter the host !!", "Close", {
+        duration: 2000,
+      });
+    }else if(this.validate(this.smtpData.port) ){
+      this._snackBar.open("Please enter the port !!", "Close", {
+        duration: 2000,
+      });
+    }else if(this.validate(this.smtpData.email) ){
+      this._snackBar.open("Please enter the email !!", "Close", {
+        duration: 2000,
+      });
+    }else if(this.validate(this.smtpData.password) ){
+      this._snackBar.open("Please enter the password !!", "Close", {
+        duration: 2000,
+      });
+    }else{
     this.settingService.updateSmtpData(this.smtpData).subscribe(data => {
       if(data !== null) {
         this.smtpDetail= data;
@@ -49,6 +66,7 @@ export class SmtpSettingComponent implements OnInit {
          this.errorMessage = "Username is already exist";
        }
      });
+    }
   }
 
   ResetSmtpData(){
@@ -71,6 +89,13 @@ export class SmtpSettingComponent implements OnInit {
          this.errorMessage = "Username is already exist";
        }
      });
+  }
+
+  validate(fieldData: String) {
+    if(fieldData == null || fieldData == "")
+    return true;
+    else
+    return false;
   }
 
  
