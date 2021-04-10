@@ -1,5 +1,5 @@
 <mat-card>
-    <a  routerLink="."><mat-icon>home</mat-icon></a><span>/ </span><a routerLink="."><span class="span-header">Tanent Dashboard</span></a> </mat-card>
+    <a  routerLink="."><mat-icon>home</mat-icon></a><span>/ </span><a routerLink="."><span class="span-header">Tenent Dashboard</span></a> </mat-card>
     <mat-divider></mat-divider>
     <mat-divider></mat-divider>
     <mat-divider></mat-divider>
@@ -7,7 +7,7 @@
       <mat-divider></mat-divider>
       <mat-divider></mat-divider>
       <mat-card-header> 
-        <h1>Tanent Staff</h1>
+        <h1>Tenent Staff</h1>
         <div class="flex-item" 
         fxFlex fxLayoutAlign="end center">
         
@@ -97,10 +97,10 @@
 <!-- End Here-->
 
         <div class="mat-elevation-z8 tableDiv">
-          <mat-form-field  [style.width.rem]=25 [style.padding-left.rem]=2 >
+         <mat-form-field  [style.width.rem]=25 [style.padding-left.rem]=2 >
        <mat-label>Filter</mat-label>
        <input autocomplete="off" matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
-     </mat-form-field> 
+     </mat-form-field>
     
    <table mat-table [dataSource]="dataSource"  class="mat-elevation-z8">
               <ng-container matColumnDef="id">
@@ -114,37 +114,87 @@
         </ng-container>
       
         <ng-container matColumnDef="name">
-          <th mat-header-cell *matHeaderCellDef> Name </th>
+          <th mat-header-cell *matHeaderCellDef>Name</th>
+            <!-- <form  [formGroup]="formGroup">
+            <mat-form-field>
+       <input matInput formControlName="name">
+        <mat-placeholder style=" color:white;">Name</mat-placeholder>
+      </mat-form-field>
+
+      </form>
+    </th>  -->
           <td mat-cell *matCellDef="let users"> {{users.name}} </td>
         </ng-container>
       
         <ng-container matColumnDef="email">
-          <th mat-header-cell *matHeaderCellDef> Email </th>
+          <th mat-header-cell *matHeaderCellDef>Email</th>
+            <!-- <form  [formGroup]="formGroup">
+            <mat-form-field>
+       <input matInput formControlName="email">
+        <mat-placeholder style=" color:white;">Email</mat-placeholder>
+      </mat-form-field>
+
+      </form> </th> -->
           <td mat-cell *matCellDef="let users"> {{users.email}} </td>
         </ng-container>
 
         <ng-container matColumnDef="door">
-          <th mat-header-cell *matHeaderCellDef> Door </th>
+          <th mat-header-cell *matHeaderCellDef>Door</th>
+            <!-- <form  [formGroup]="formGroup">
+            <mat-form-field>
+       <input matInput formControlName="door">
+        <mat-placeholder style=" color:white;">Door</mat-placeholder>
+      </mat-form-field>
+
+      </form></th> -->
           <td mat-cell *matCellDef="let users"> {{users.door}} </td>
         </ng-container>
 
         <ng-container matColumnDef="phone">
-          <th mat-header-cell *matHeaderCellDef> Phone </th>
+          <th mat-header-cell *matHeaderCellDef>Phone</th>
+            <!-- <form  [formGroup]="formGroup">
+            <mat-form-field>
+       <input matInput formControlName="phone">
+        <mat-placeholder style=" color:white;">Phone</mat-placeholder>
+      </mat-form-field>
+
+      </form></th> -->
           <td mat-cell *matCellDef="let users"> {{users.phone}} </td>
         </ng-container>
       
         <ng-container matColumnDef="jobPosition">
-          <th mat-header-cell *matHeaderCellDef> Job Position </th>
+          <th mat-header-cell *matHeaderCellDef>Job Position</th>
+            <!-- <form  [formGroup]="formGroup">
+            <mat-form-field>
+       <input matInput formControlName="jobPosition">
+        <mat-placeholder style=" color:white;">Job Position</mat-placeholder>
+      </mat-form-field>
+
+      </form></th> -->
           <td mat-cell *matCellDef="let users"> {{users.jobPosition}} </td>
         </ng-container>
   
         <ng-container matColumnDef="jobLocation">
-          <th mat-header-cell *matHeaderCellDef> Job Location </th>
+          <th mat-header-cell *matHeaderCellDef>Job Location</th>
+            <!-- <form  [formGroup]="formGroup">
+            <mat-form-field>
+       <input matInput formControlName="jobLocation">
+        <mat-placeholder style=" color:white; ">Job Location</mat-placeholder>
+      </mat-form-field>
+
+      </form></th> -->
           <td mat-cell *matCellDef="let users"> {{users.jobLocation}} </td>
         </ng-container>
   
         <ng-container matColumnDef="company">
-          <th mat-header-cell *matHeaderCellDef> Company </th>
+          <th mat-header-cell *matHeaderCellDef>Company</th>
+            <!-- <form  [formGroup]="formGroup">
+            <mat-form-field>
+       <input matInput formControlName="company">
+        <mat-placeholder style=" color:white; ">Company</mat-placeholder>
+      </mat-form-field>
+
+      </form></th> -->
           <td mat-cell *matCellDef="let users"> {{users.company}} </td>
         </ng-container>
 
@@ -164,9 +214,9 @@
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   
         <!-- Row shown when there is no matching data. -->
-    <tr class="mat-row" *matNoDataRow>
+     <tr class="mat-row" *matNoDataRow>
       <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
-    </tr>
+    </tr> 
       </table>
       <mat-paginator  #myPaginator [length]="25"
       [pageSize]="5" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>

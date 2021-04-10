@@ -11,9 +11,11 @@ table {
 background-color: rgb(252, 245, 245);
 }
 .tableDiv{
+  width: 100%;
   margin-top: 0.1rem !important;
   margin-left: 0.5rem;
   margin-right: 0.5rem;
+  // overflow: scroll;
 }
 mat-card-content{
     padding: 1.5rem;
@@ -90,4 +92,8 @@ mat-horizontal-stepper{
 
 .container{
   margin-top: -1rem;
+}
+mat-paginator{
+  width: 100%;
+   overflow: auto;
 }

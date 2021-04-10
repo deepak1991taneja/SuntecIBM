@@ -2,7 +2,7 @@ import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 import { DatePipe } from '@angular/common';
 import { HttpEvent, HttpEventType, HttpResponse } from '@angular/common/http';
 import { Component, Inject, OnInit, Optional, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -40,10 +40,39 @@ export class TanentDashboardComponent implements OnInit {
   message : any;
   firstFormGroup!: FormGroup;
   secondFormGroup!: FormGroup;
+  formGroup!: FormGroup;
+  readonly formControl!: AbstractControl;
 
-  constructor(private _formBuilder: FormBuilder, private userLoginService: UsersLoginService, public dialog: MatDialog, private _snackBar: MatSnackBar, public _DomSanitizer: DomSanitizer) {
+  constructor(private _formBuilder: FormBuilder, private userLoginService: UsersLoginService, public dialog: MatDialog, private _snackBar: MatSnackBar, public _DomSanitizer: DomSanitizer, formBuilder: FormBuilder) {
     this.dataSource = new MatTableDataSource<Users>();
     this.sanitizer = _DomSanitizer;
+    this.dataSource.filterPredicate = ((data, filter) => {
+      const a = !filter.door || data.door.toLowerCase().includes(filter.door);
+      const b = !filter.name || data.name.toLowerCase().includes(filter.name);
+      const c = !filter.phone || data.phone.toLowerCase().includes(filter.phone);
+      const d = !filter.jobPosition || data.jobPosition.toLowerCase().includes(filter.jobPosition);
+      const e = !filter.jobLocation || data.jobLocation.toLowerCase().includes(filter.jobLocation);
+      const f = !filter.email || data.email.toLowerCase().includes(filter.email);
+      const g = !filter.company || data.company.toLowerCase().includes(filter.company);
+
+      return a && b && c && d && e && f &&g;
+    }) as (userData: any, string: any) => boolean;
+
+    this.formGroup = formBuilder.group({
+      name: '',
+      door: '',
+      jobPosition: '',
+      jobLocation: '',
+      company: '',
+      email: '',
+      phone:'',
+    })
+    this.formGroup.valueChanges.subscribe(value => {
+      const filter = {...value, name: value.name.trim().toLowerCase(),door: value.door.trim().toLowerCase(),
+        jobPosition: value.jobPosition.trim().toLowerCase(),jobLocation: value.jobLocation.trim().toLowerCase(),
+        email: value.email.trim().toLowerCase(),company: value.company.trim().toLowerCase(),phone: value.phone.trim().toLowerCase()} as string;
+      this.dataSource.filter = filter;
+    });
   
    }
 
@@ -155,7 +184,7 @@ addRowData(row_obj:Users, file:File){
   this.userLoginService.registerPerson(formData).subscribe(data => {
     if(data !== null) {
       this.userDetail = data;
-      this.dataSource.data.push({
+      this.dataSource.data.unshift({
         id:this.userDetail.id,
         name:this.userDetail.name,
         email: this.userDetail.email,
@@ -442,7 +471,7 @@ uploadStepper(){
           const data =window.URL.createObjectURL(blob);
           const link =document.createElement('a');
           link.href=data;
-          link.download='Tenent_Staff.xlsx';
+          link.download='Upload_Report.xlsx';
           link.dispatchEvent(new MouseEvent('click',{bubbles: true,cancelable : true,view: window}));
           
           setTimeout(function() {
