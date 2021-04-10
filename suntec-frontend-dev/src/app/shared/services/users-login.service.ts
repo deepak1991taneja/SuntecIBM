@@ -63,4 +63,8 @@ errorMgmt(error: HttpErrorResponse) {
   return throwError(errorMessage);
 }
 
+newUsers() : Observable<any> {
+  return this.http.get(`${API_URL}/staffData/newUsers`);
+}
+
 }

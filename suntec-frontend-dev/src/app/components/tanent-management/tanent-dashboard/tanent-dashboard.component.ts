@@ -443,8 +443,9 @@ uploadStepper(){
 
 
 //////
-
-          this.usersImport = this.message.usersData;
+this.userLoginService.newUsers().subscribe(data => {
+  if(data !== null) {
+          this.usersImport = data;
           this.usersImport.forEach(element => {
             this.userDetail = element;
             this.dataSource.data.push({
@@ -468,6 +469,16 @@ uploadStepper(){
             });
             this.dataSource.filter="";
           });
+        }else{
+         console.log("somethings went wrong");
+        }
+        }, err => {
+          if(!err || err.status !== 409) {
+            this.errorMessage = "Unexpected error occurred. Error : " + err;
+          }else {
+            this.errorMessage = "Username is already exist";
+          }
+        });
           this._snackBar.open("file upload sucessfully !!", "Thanks", {
             duration: 1000,
           });
