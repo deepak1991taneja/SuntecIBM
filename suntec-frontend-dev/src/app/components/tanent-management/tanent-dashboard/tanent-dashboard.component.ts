@@ -142,7 +142,11 @@ exportArray() {
 
 addRowData(row_obj:Users, file:File){
   let formData:FormData = new FormData();
-  formData.append('uploadFile', file, file.name);
+  if(file.size > 0){
+    formData.append('uploadFile', file, file.name);
+     }else{
+       formData.append('uploadFile',  new Blob());
+     }
   formData.append('info',new Blob([JSON.stringify(row_obj)],
   {
       type: "application/json"
@@ -187,7 +191,12 @@ addRowData(row_obj:Users, file:File){
 updateRowData(row_obj:Users, file:File){
   this.addUpdatedData(row_obj);
   let formData:FormData = new FormData();
+  console.log("file size ::; " + file.size)
+  if(file.size > 0){
  formData.append('uploadFile', file, file.name);
+  }else{
+    formData.append('uploadFile',  new Blob());
+  }
  formData.append('info',new Blob([JSON.stringify(this.userData)],
   {
       type: "application/json"

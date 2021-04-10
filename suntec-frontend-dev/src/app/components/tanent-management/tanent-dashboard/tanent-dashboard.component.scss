@@ -11,9 +11,9 @@ table {
 background-color: rgb(252, 245, 245);
 }
 .tableDiv{
-  margin-top: 0.5rem !important;
-  margin-left: 1rem;
-  margin-right: 1rem;
+  margin-top: 0.1rem !important;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
 }
 mat-card-content{
     padding: 1.5rem;
@@ -82,4 +82,12 @@ mat-card-header{
 
 .mat-form-field {
   margin-top: 16px;
+}
+
+mat-horizontal-stepper{
+  margin: 0rem !important;
+}
+
+.container{
+  margin-top: -1rem;
 }
