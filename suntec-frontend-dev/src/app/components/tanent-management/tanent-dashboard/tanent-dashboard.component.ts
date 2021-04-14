@@ -3,8 +3,10 @@ import { DatePipe } from '@angular/common';
 import { HttpEvent, HttpEventType, HttpResponse } from '@angular/common/http';
 import { Component, Inject, OnInit, Optional, ViewChild } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ThemePalette } from '@angular/material/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
+import { ProgressSpinnerMode } from '@angular/material/progress-spinner';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableDataSource } from '@angular/material/table';
 import { DomSanitizer } from '@angular/platform-browser';
@@ -42,6 +44,11 @@ export class TanentDashboardComponent implements OnInit {
   secondFormGroup!: FormGroup;
   formGroup!: FormGroup;
   readonly formControl!: AbstractControl;
+  visible: boolean = false;
+
+  color: ThemePalette = 'primary';
+  mode: ProgressSpinnerMode = 'indeterminate';
+  value = 50;
 
   constructor(private _formBuilder: FormBuilder, private userLoginService: UsersLoginService, public dialog: MatDialog, private _snackBar: MatSnackBar, public _DomSanitizer: DomSanitizer, formBuilder: FormBuilder) {
     this.dataSource = new MatTableDataSource<Users>();
@@ -420,7 +427,7 @@ selectDirectoryStep2(event:any){
 
 uploadStepper(){
 
-  
+   this.visible = true;
 //   let formData:FormData = new FormData();
      
 // this.userLoginService.uploadExcelFile(formData).subscribe((event: any) =>{
@@ -563,8 +570,10 @@ this.userLoginService.newUsers().subscribe(data => {
     });
   }
 
+  setTimeout(() => {
+    this.visible=false;
+  }, 120000);
 
- 
  
 
 }

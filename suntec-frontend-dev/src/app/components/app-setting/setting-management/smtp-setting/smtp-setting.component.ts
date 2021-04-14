@@ -31,6 +31,7 @@ export class SmtpSettingComponent implements OnInit {
   }
 
   SaveSmtpData(){
+    let emailPattern='^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$';
     if(this.validate(this.smtpData.host)){
       this._snackBar.open("Please enter the host !!", "Close", {
         duration: 2000,
@@ -41,6 +42,10 @@ export class SmtpSettingComponent implements OnInit {
       });
     }else if(this.validate(this.smtpData.email) ){
       this._snackBar.open("Please enter the email !!", "Close", {
+        duration: 2000,
+      });
+    }else if(!this.smtpData.email.match(emailPattern)){
+      this._snackBar.open("Please enter the vaild email address !!", "Close", {
         duration: 2000,
       });
     }else if(this.validate(this.smtpData.password) ){

@@ -261,6 +261,7 @@ export class AccountDialogComponent {
   doAction(){
     console.log("Action Clicked "+this.action)
    
+    let emailPattern='^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$';
     if(this.validate(this.local_data.name)){
       this._snackBar.open("Please enter name !!", "Close", {
         duration: 2000,
@@ -279,6 +280,10 @@ export class AccountDialogComponent {
       });
     }else if(this.validate(this.local_data.email)){
       this._snackBar.open("Please enter email !!", "Close", {
+        duration: 2000,
+      });
+    }else if(!this.local_data.email.match(emailPattern)){
+      this._snackBar.open("Please enter vaild email address!!", "Close", {
         duration: 2000,
       });
     }else{

@@ -91,9 +91,17 @@
       <button mat-raised-button color="primary" matStepperPrevious>Back</button>
       <button mat-raised-button color="primary" (click)="uploadStepper()">confirm & Upload</button>
       <button mat-raised-button color="primary" (click)="stepper.reset()">Reset</button>
+      <!-- <button mat-raised-button color="primary" (click)="stepper.reset()">{{visible}}</button> -->
+      
+      <!-- <div *ngIf="visible" class="spinner" >
+        <mat-progress-spinner  class="example-margin"  [color]="color"
+        [mode]="mode"
+       ></mat-progress-spinner>
+      </div> -->
     </div>
   </mat-step>
 </mat-horizontal-stepper>
+
 <!-- End Here-->
 
         <div class="mat-elevation-z8 tableDiv">

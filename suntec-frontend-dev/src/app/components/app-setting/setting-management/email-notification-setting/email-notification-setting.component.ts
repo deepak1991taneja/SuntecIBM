@@ -33,8 +33,13 @@ export class EmailNotificationSettingComponent implements OnInit {
  }
 
  SaveEmailNotificationData(){
+  let emailPattern='^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$';
   if(this.validate(this.emailNotificationData.email)){
     this._snackBar.open("Please enter the email address !!", "Close", {
+      duration: 2000,
+    });
+  }else if(!this.emailNotificationData.email.match(emailPattern)){
+    this._snackBar.open("Please enter the vaild email address !!", "Close", {
       duration: 2000,
     });
   }else if(this.validate(this.emailNotificationData.password) ){
