@@ -44,10 +44,10 @@ export class TanentDashboardComponent implements OnInit {
   secondFormGroup!: FormGroup;
   formGroup!: FormGroup;
   readonly formControl!: AbstractControl;
-  visible: boolean = false;
+  visibleProgress: boolean = false;
 
   color: ThemePalette = 'primary';
-  mode: ProgressSpinnerMode = 'indeterminate';
+  mode: ProgressSpinnerMode = 'determinate';
   value = 50;
 
   constructor(private _formBuilder: FormBuilder, private userLoginService: UsersLoginService, public dialog: MatDialog, private _snackBar: MatSnackBar, public _DomSanitizer: DomSanitizer, formBuilder: FormBuilder) {
@@ -93,7 +93,8 @@ export class TanentDashboardComponent implements OnInit {
         firstCtrl: ['', Validators.required]
       });
       this.secondFormGroup = this._formBuilder.group({
-        secondCtrl: ['', Validators.required]
+        secondCtrl: ['', Validators.required],
+        selectStatus:['', Validators.required]
       });
   
 }
@@ -412,42 +413,44 @@ selectFileStep1(event:any) {
 }
 
 selectDirectoryStep2(event:any){
+  let isOverSize:boolean = false;
   var tmppath = event.target.files[0].value;
-  console.log("stepper 2 called ::: "+ tmppath);
-  //const file = (event.target as HTMLInputElement).files![0];
  let file!:FileList;
   if (event.target.files.length > 0){
      file = event.target.files;
-}  
-  this.secondFormGroup.patchValue({
-    secondCtrl: file
+}else{
+  this._snackBar.open("Sorry no image found in directory", "Thanks", {
+    duration: 1000,
   });
-  this.secondFormGroup.controls.secondCtrl.setValue(file);
+}  
+
+for (var i = 0; i < file.length; i++) {
+  var totalSizeKB = file[i].size / Math.pow(1024,1)
+  if(totalSizeKB > 200){
+    isOverSize = true;
+    break;
+  }
+}
+  if(isOverSize){
+    this._snackBar.open("Images size should less than 200kb", "Close", {
+      duration: 1000,
+    });
+    this.secondFormGroup.controls.selectStatus.setValue("");
+  }else{
+    this.secondFormGroup.patchValue({
+      secondCtrl: file
+    });
+    this.secondFormGroup.controls.secondCtrl.setValue(file);
+    this.secondFormGroup.controls.selectStatus.setValue("Directory selected");
+  }
+ 
+
+ 
 }
 
 uploadStepper(){
 
-   this.visible = true;
-//   let formData:FormData = new FormData();
-     
-// this.userLoginService.uploadExcelFile(formData).subscribe((event: any) =>{
-//   const blob = new Blob([event.body],{type : 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'})
-
-//   if(window.navigator && window.navigator.msSaveOrOpenBlob){
-//     window.navigator.msSaveOrOpenBlob(blob);
-//     return;
-//   }
-//   const data =window.URL.createObjectURL(blob);
-//   const link =document.createElement('a');
-//   link.href=data;
-//   link.download='Tenent_Staff.csv';
-//   link.dispatchEvent(new MouseEvent('click',{bubbles: true,cancelable : true,view: window}));
-  
-//   setTimeout(function() {
-//     window.URL.revokeObjectURL(data);
-//     link.remove();
-//   }, 100);
-// });
+   this.visibleProgress = true;
    let step1: File|null|undefined  = this.firstFormGroup.get("firstCtrl")?.value;
    let step2:FileList|null|undefined = this.secondFormGroup.get("secondCtrl")?.value;
 
@@ -537,6 +540,7 @@ this.userLoginService.newUsers().subscribe(data => {
             secondCtrl: undefined
           });
           this.secondFormGroup.controls.secondCtrl.setValue(undefined);
+          this.secondFormGroup.controls.selectStatus.setValue(undefined);
 
           this.firstFormGroup.patchValue({
             firstCtrl: undefined
@@ -571,41 +575,11 @@ this.userLoginService.newUsers().subscribe(data => {
   }
 
   setTimeout(() => {
-    this.visible=false;
+    this.visibleProgress=false;
+    console.log("progresss false::");
   }, 120000);
 
- 
-
 }
-
-
-// submitUser() {
-
-//   var formData: any = new FormData();
-//   formData.append("uploadFile", this.form.value.avatar);
-//   this.userLoginService.uploadExcelFile(
-//     formData
-//   ).subscribe((event : any) => {
-//     switch (event.type) {
-//       case HttpEventType.Sent:
-//         console.log('Request has been made!');
-//         break;
-//       case HttpEventType.ResponseHeader:
-//         console.log('Response header has been received!');
-//         break;
-//       case HttpEventType.UploadProgress:
-//         this.progress = Math.round(event.loaded / event.total * 100);
-//         console.log(`Uploaded! ${this.progress}%`);
-//         break;
-//       case HttpEventType.Response:
-//         console.log('User successfully created!', event.body);
-//         setTimeout(() => {
-//           this.progress = 0;
-//         }, 1500);
-
-//     }
-//   })
-// }
 
 }
 

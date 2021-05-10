@@ -71,7 +71,8 @@
         <div fxFlex="25%">
                   <input #fileInputStep2 type="file" onclick="this.value=null" (change)="selectDirectoryStep2($event)" style="display:none;" webkitdirectory  />
                   <mat-form-field class="example-full-width" (click)="fileInputStep2.click()" >
-                    <input matInput placeholder="Choose image directory" formControlName="secondCtrl" required value="{{fileInputStep2.value.substr(fileInputStep2.value.lastIndexOf('\\')+1)}}">
+                    <!-- value="{{fileInputStep2.value.substr(fileInputStep2.value.lastIndexOf('\\')+1)}}" -->
+                    <input matInput placeholder="Choose image directory" formControlName="selectStatus" required  >
                     <mat-icon matSuffix>folder</mat-icon>
                   </mat-form-field>
           </div>
@@ -93,15 +94,12 @@
       <button mat-raised-button color="primary" (click)="stepper.reset()">Reset</button>
       <!-- <button mat-raised-button color="primary" (click)="stepper.reset()">{{visible}}</button> -->
       
-      <!-- <div *ngIf="visible" class="spinner" >
-        <mat-progress-spinner  class="example-margin"  [color]="color"
-        [mode]="mode"
-       ></mat-progress-spinner>
-      </div> -->
+     
     </div>
   </mat-step>
 </mat-horizontal-stepper>
 
+<mat-progress-bar mode='indeterminate'></mat-progress-bar>
 <!-- End Here-->
 
         <div class="mat-elevation-z8 tableDiv">
